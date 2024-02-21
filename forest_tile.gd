@@ -11,10 +11,8 @@ func _process(delta):
 	pass
 
 func _pressed():
-	print("Pressed: ")
-	$HBoxContainer.show()
-	$Window.show_add(['one', 'two'])
-	$Window.show()
+	pass
+	
 
 func _on_button_2_pressed():
 	$HBoxContainer.hide()
@@ -23,3 +21,14 @@ func _on_button_pressed():
 	$HBoxContainer.hide()
 	$TextureButton.show()
 
+
+
+func _on_focus_entered():
+	print("Pressed: ")
+	$HBoxContainer.show()
+	$Window.show_add(['one', 'two'])
+	$Window.show()
+
+
+func _on_focus_exited():
+	$HBoxContainer.hide()
