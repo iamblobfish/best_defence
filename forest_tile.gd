@@ -32,3 +32,4 @@ func _on_focus_entered():
 
 func _on_focus_exited():
 	$HBoxContainer.hide()
+	

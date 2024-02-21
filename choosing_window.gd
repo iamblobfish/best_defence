@@ -20,3 +20,4 @@ func show_add(lst):
 
 func _on_create_pressed():
 	print($VBoxContainer/ItemList.get_selected_items())
+	

@@ -1,3 +1,4 @@
 res://grid.tscn
 res://forest_tile.tscn
 res://forest_tile.gd
+res://choosing_window.gd
