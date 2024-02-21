@@ -1,4 +1,7 @@
 extends PopupPanel
+signal close
+signal create
+signal delete
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,11 +16,28 @@ func _process(delta):
 
 
 func show_add(lst):
+	print(lst)
 	for el in lst:
-		$VBoxContainer/ItemList.add_item(el)
-	$VBoxContainer.show()
+		print(el)
+		print($VBoxContainer/ItemList.add_item(el))	
+	show()
+	
+	
+
 
 
 func _on_create_pressed():
-	print($VBoxContainer/ItemList.get_selected_items())
+	create.emit()
+	pass # Replace with function body.
+
+
+func _on_close_pressed():
+	close.emit()
+	hide()
 	
+
+
+
+func _on_delete_pressed():
+	delete.emit()
+	 # Replace with function body.
