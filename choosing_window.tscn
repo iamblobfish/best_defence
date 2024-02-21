@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://ejbom40cm3en"]
+
+[ext_resource type="Script" path="res://choosing_window.gd" id="1_q7t5a"]
+
+[node name="Window" type="PopupPanel"]
+title = "Some Items"
+position = Vector2i(952, 0)
+size = Vector2i(200, 648)
+visible = true
+script = ExtResource("1_q7t5a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 196.0
+offset_bottom = 644.0
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Create" type="Button" parent="VBoxContainer"]
+modulate = Color(0.12549, 1, 1, 1)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Create"
+
+[connection signal="pressed" from="VBoxContainer/Create" to="." method="_on_create_pressed"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvurlfffb3rbq"]
+
+[ext_resource type="PackedScene" uid="uid://bluvtptda08em" path="res://forest_tile.tscn" id="1_06fm2"]
+[ext_resource type="Script" path="res://grid.gd" id="2_npl25"]
+[ext_resource type="PackedScene" uid="uid://ejbom40cm3en" path="res://choosing_window.tscn" id="3_ghqwk"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_tb11a"]
+resource_name = "TileSet"
+scenes/1/scene = ExtResource("1_06fm2")
+
+[sub_resource type="TileSet" id="TileSet_yn5s4"]
+tile_shape = 3
+tile_offset_axis = 1
+tile_size = Vector2i(126, 106)
+sources/2 = SubResource("TileSetScenesCollectionSource_tb11a")
+
+[node name="TileMap" type="TileMap"]
+position = Vector2(1, 2)
+tile_set = SubResource("TileSet_yn5s4")
+rendering_quadrant_size = 10
+format = 2
+layer_0/tile_data = PackedInt32Array(1, 2, 65536, 2, 2, 65536, -65533, 2, 65536, 0, 2, 65536, 65536, 2, 65536, 131072, 2, 65536, -65535, 2, 65536, -65534, 2, 65536, -131069, 2, 65536, 3, 2, 65536)
+script = ExtResource("2_npl25")
+
+[node name="ForestTile2" parent="." instance=ExtResource("1_06fm2")]
+
+[node name="Window" parent="." instance=ExtResource("3_ghqwk")]
+
+[connection signal="mouse_entered" from="ForestTile" to="ForestTile" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ForestTile" to="ForestTile" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="@TextureButton@19182" to="@TextureButton@19182" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="@TextureButton@19182" to="@TextureButton@19182" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="@TextureButton@19185" to="@TextureButton@19185" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="@TextureButton@19185" to="@TextureButton@19185" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="@TextureButton@19188" to="@TextureButton@19188" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="@TextureButton@19188" to="@TextureButton@19188" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="@TextureButton@19191" to="@TextureButton@19191" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="@TextureButton@19191" to="@TextureButton@19191" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="@TextureButton@19194" to="@TextureButton@19194" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="@TextureButton@19194" to="@TextureButton@19194" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="@TextureButton@19197" to="@TextureButton@19197" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="@TextureButton@19197" to="@TextureButton@19197" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="@TextureButton@19200" to="@TextureButton@19200" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="@TextureButton@19200" to="@TextureButton@19200" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="@TextureButton@19203" to="@TextureButton@19203" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="@TextureButton@19203" to="@TextureButton@19203" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="@TextureButton@19206" to="@TextureButton@19206" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="@TextureButton@19206" to="@TextureButton@19206" method="_on_mouse_exited"]
