@@ -1,56 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://ejbom40cm3en"]
+[gd_scene load_steps=2 format=3 uid="uid://cb5qk2r15qo5y"]
 
-[ext_resource type="Script" path="res://choosing_window.gd" id="1_q7t5a"]
+[ext_resource type="Script" path="res://choosing_window.gd" id="1_yqdw2"]
 
-[sub_resource type="Theme" id="Theme_fgcqo"]
-
-[node name="Window" type="PopupPanel"]
-title = "Some Items"
-position = Vector2i(952, 0)
-size = Vector2i(208, 648)
-visible = true
-script = ExtResource("1_q7t5a")
+[node name="Window" type="Panel"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -169.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_yqdw2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_direction = 1
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 204.0
-offset_bottom = 644.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
-
-[node name="ItemList" type="ItemList" parent="VBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_vertical = 2
-size_flags_stretch_ratio = 0.2
-theme = SubResource("Theme_fgcqo")
-theme_override_colors/font_color = Color(0.972549, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-allow_search = false
-fixed_icon_size = Vector2i(1, 0)
 
 [node name="Create" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 2
 text = "Create"
 
 [node name="delete" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 2
 text = "Delete"
 
-[node name="Close" type="Button" parent="VBoxContainer"]
-visible = false
+[node name="btn3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 2
-text = "Close"
-
-[connection signal="pressed" from="VBoxContainer/Create" to="." method="_on_create_pressed"]
-[connection signal="pressed" from="VBoxContainer/delete" to="." method="_on_delete_pressed"]
-[connection signal="pressed" from="VBoxContainer/Close" to="." method="_on_close_pressed"]
+text = "Update"

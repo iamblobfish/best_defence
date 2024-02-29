@@ -1,2 +1,14 @@
-Sprite2D
-ItemList
+TextureRect
+ColorRect
+MarginContainer
+Panel
+VBoxContainer
+CanvasModulate
+ParallaxBackground
+Button
+CanvasLayer
+Container
+Node2D
+Window
+PopupPanel
+Popup
