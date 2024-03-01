@@ -1,7 +1,7 @@
 class_name BaseTower 
 extends Sprite2D
 
-var max_hp: int = 0
+var max_hp: int = 1000
 var hp: int = 0
 var current_level: int = 0
 var maximum_level: int = 0
@@ -44,6 +44,7 @@ func create_or_update():
 		show()
 
 func destroy():
+	# TODO: curent_level set to 0? 
 	# TODO: add destoroy value to overall money
 	texture = null
 	hide()
@@ -51,6 +52,8 @@ func destroy():
 func get_state():
 	var tower_state = TowerState.new()
 	tower_state.is_build = tower_type != TowerType.NOTHING
+	if not tower_state.is_build:
+		return tower_state
 	tower_state.tower_type = tower_type
 	tower_state.is_damaged = hp < max_hp
 	tower_state.is_upgradable = current_level < maximum_level

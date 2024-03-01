@@ -2,13 +2,10 @@ extends Panel
 signal btn3
 signal create
 signal delete
-
+#TODO: make it be screen size always
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	create.connect(_on_create_pressed)
-	delete.connect(_on_delete_pressed)
-	btn3.connect(_on_btn3_pressed)
 	#anchors_preset = PRESET_RIGHT_WIDE
 	hide()
 
@@ -23,12 +20,7 @@ func _on_create_pressed():
 
 func _on_delete_pressed():
 	delete.emit()
-
-func _on_btn3_pressed():
-	btn3.emit()
-
-func _on_visibility_changed():
-	print('fuck')
+	
 
 
 func _on_forest_tile_2_show_window():
@@ -39,3 +31,6 @@ func _on_forest_tile_2_show_window():
 func _on_forest_tile_focus_exited():
 	hide()
 
+func _on_btn_3_pressed():
+	btn3.emit()
+	pass # Replace with function body.

@@ -3,6 +3,12 @@ signal tile_focused
 signal tile_unfocused
 # Called when the node enters the scene tree for the first time.
 
+var towers = {
+	"Base" : "res://towers_scripts/base_tower.gd",
+	"Attack" : "res://towers_scripts/attack_base_tower.gd",
+	"Mining" : "res://towers_scripts/mining_tower.gd"
+}
+
 var focus = false
 func _ready():
 	forest()
@@ -50,7 +56,12 @@ func get_tower_state():
 	return $Tower.get_state()
 
 func create_tower():
-	$Tower.add()
+	#TODO: choise
+	var choise = "Mining" 
+	$Tower.set_script(load(towers[choise]))
+	$Tower.create_or_update()
+	
 
 func delete_tower():
-	$Tower.delete()
+	$Tower.destroy()
+	$Tower.set_script(load(towers['Base']))

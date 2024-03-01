@@ -18,7 +18,7 @@ func _ready():
 			else:
 				tile.position = margin+Vector2(65*3/2+j*130*3/2, 85*i/2)
 			tile_map[tile.position] = tile
-			tile.tile_focused.connect(on_tile_focused.bind(tile))
+			tile.tile_focused.connect(update_window.bind(tile))
 			tile.tile_unfocused.connect(on_tile_unfocused.bind(tile))
 			add_child(tile)
 
@@ -26,19 +26,20 @@ func _ready():
 func _process(delta):
 	pass
 
-func on_tile_focused(tile):
+func update_window(tile):
 	print("The clicked tile is: ", tile)
 	var tower_state = tile.get_tower_state()
+	print(tower_state)
 	focused_tile = tile
 	#TODO: make window always be over other nodes
 	$Window/VBoxContainer/btn3.hide()
 	$Window/VBoxContainer/Create.hide()
 	$Window/VBoxContainer/delete.hide()
-	if tower_state==-1:
+	if not tower_state.is_build:
 		$Window/VBoxContainer/Create.show()
 	else:
 		$Window/VBoxContainer/delete.show()
-		if not tower_state:
+		if tower_state.is_upgradable:
 			$Window/VBoxContainer/btn3.show()
 	$Window.show()
 
@@ -60,7 +61,10 @@ func _on_window_create():
 	print('create on ', focused_tile)
 	if focused_tile:
 		focused_tile.create_tower()
+	update_window(focused_tile)
+	
 
 func _on_window_delete():
 	if focused_tile:
 		focused_tile.delete_tower()
+	update_window(focused_tile)
