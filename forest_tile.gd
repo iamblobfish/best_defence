@@ -9,6 +9,8 @@ var towers = {
 	"Mining" : "res://towers_scripts/mining_tower.gd"
 }
 
+# TODO: update button
+
 var focus = false
 func _ready():
 	forest()
@@ -43,7 +45,7 @@ func _on_pressed():
 		release_focus()
 		tile_unfocused.emit()
 	else:
-		grab_click_focus()
+		grab_focus()
 		print('show vindow in tile')
 		#print(focus)
 		tile_focused.emit()
@@ -57,11 +59,13 @@ func get_tower_state():
 
 func create_tower():
 	#TODO: choise
+	grab_focus()
 	var choise = "Mining" 
 	$Tower.set_script(load(towers[choise]))
 	$Tower.create_or_update()
 	
 
 func delete_tower():
+	grab_focus()
 	$Tower.destroy()
 	$Tower.set_script(load(towers['Base']))

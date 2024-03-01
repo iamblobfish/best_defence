@@ -1,14 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs537ca2rblp"]
+[gd_scene load_steps=6 format=3 uid="uid://bs537ca2rblp"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_w66bd"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="2_5ot5l"]
 [ext_resource type="PackedScene" uid="uid://crwlur50qm8jl" path="res://map.tscn" id="3_0dd1o"]
 [ext_resource type="Texture2D" uid="uid://byn7rprhnikoq" path="res://tiles/skyх2.png" id="4_v5ua5"]
+[ext_resource type="PackedScene" uid="uid://cb5qk2r15qo5y" path="res://choosing_window.tscn" id="5_onpe8"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_w66bd")
 
 [node name="background" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = -1174.0
 offset_top = -622.0
 offset_right = 2282.0
@@ -18,9 +26,22 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
 texture = ExtResource("4_v5ua5")
 
+[node name="Window" parent="." instance=ExtResource("5_onpe8")]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = -1
+offset_left = -193.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(574, 325)
 script = ExtResource("2_5ot5l")
 
 [node name="map" parent="." instance=ExtResource("3_0dd1o")]
 position = Vector2(-1, 1)
+
+[connection signal="btn3" from="Window" to="." method="_on_window_create_or_update"]
+[connection signal="create" from="Window" to="." method="_on_window_create_or_update"]
+[connection signal="delete" from="Window" to="." method="_on_window_delete"]
+[connection signal="move" from="Camera2D" to="." method="_on_camera_2d_move"]
+[connection signal="window_hide" from="map" to="." method="_on_map_window_hide"]
+[connection signal="window_update" from="map" to="." method="window_update"]

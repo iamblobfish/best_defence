@@ -1,17 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://crwlur50qm8jl"]
+[gd_scene load_steps=2 format=3 uid="uid://crwlur50qm8jl"]
 
-[ext_resource type="PackedScene" uid="uid://cb5qk2r15qo5y" path="res://choosing_window.tscn" id="1_6iivx"]
 [ext_resource type="Script" path="res://map.gd" id="1_48ave"]
 
 [node name="map" type="Node2D"]
 script = ExtResource("1_48ave")
-
-[node name="Window" parent="." instance=ExtResource("1_6iivx")]
-offset_left = 942.0
-offset_right = 1152.0
-offset_bottom = 646.0
-size_flags_horizontal = 10
-size_flags_vertical = 3
-
-[connection signal="create" from="Window" to="." method="_on_window_create"]
-[connection signal="delete" from="Window" to="." method="_on_window_delete"]
