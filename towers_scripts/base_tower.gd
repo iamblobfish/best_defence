@@ -28,10 +28,15 @@ func _init():
 	# TODO: tile specifications
 
 func create_or_update():
-	# TODO: substract money
 	if current_level >= maximum_level:
 		return
 	current_level += 1
+	
+	if current_level == 1:
+		PlayerState.reduce_currency(towers_cost[tower_type])
+	else:
+		PlayerState.reduce_currency(level_to_upgrade_cost[current_level-1])
+	
 	texture = ImageTexture.create_from_image(
 		Image.load_from_file(level_to_texture_dict[current_level])
 	)
