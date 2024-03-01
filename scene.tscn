@@ -13,10 +13,10 @@ position = Vector2(574, 325)
 script = ExtResource("2_fi7qg")
 
 [node name="map" parent="." instance=ExtResource("3_7cgfp")]
-visible = false
 position = Vector2(-72, -24)
 
 [node name="background" type="TextureRect" parent="."]
+visible = false
 offset_left = -1174.0
 offset_top = -622.0
 offset_right = 2282.0
