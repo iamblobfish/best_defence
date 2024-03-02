@@ -45,4 +45,16 @@ func _on_window_delete():
 
 
 func _on_camera_2d_move():
+	print('move')
+	
+	print($Window.position)
+	print(get_global_transform_with_canvas())
+	print($Camera2D.zoom)
+	$Window.position.x *= $Camera2D.zoom.x
+	#$Window.position+=get_global_transform_with_canvas()[2]
+	#$Window.size+=get_global_transform_with_canvas()[2]
+	#print($Window.position)
+	#$Window.anchors_preset = PRESET_RIGHT_WIDE
+	#$Window.size.x = 200
+	#$Window.position.x -= 200
 	pass

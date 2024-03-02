@@ -7,10 +7,14 @@ signal delete
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	top_level = true
-	hide()
+	
+	#hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#anchors_preset = PRESET_RIGHT_WIDE
+	#size.x = 200
+	#position.x -= 200
 	pass
 
 func _on_create_pressed():
