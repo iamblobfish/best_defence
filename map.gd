@@ -4,10 +4,12 @@ signal window_update
 var tile_map = {}
 var focused_tile = null
 var margin = Vector2(100, 100)
+var enemies = []
 
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tree for the firrst time.
 func _ready():
 	var scene = preload('res://forest_tile.tscn')
+	var enemie_scene = preload("res://enemy.tscn")
 	
 	for i in range(10):
 		for j in range(4):
@@ -20,6 +22,13 @@ func _ready():
 			tile.tile_focused.connect(on_tile_focused.bind(tile))
 			tile.tile_unfocused.connect(on_tile_unfocused.bind(tile))
 			add_child(tile)
+	for i in range(1):
+		var enemie = enemie_scene.instantiate()
+		enemie.position = Vector2(500, 300)
+		enemies.append(enemie)
+		add_child(enemie)
+	
+		
 
 func on_tile_focused(tile):
 	focused_tile = tile
