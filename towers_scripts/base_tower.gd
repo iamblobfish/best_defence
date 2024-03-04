@@ -1,7 +1,11 @@
 class_name BaseTower 
 extends Sprite2D
 
-var max_hp: int = 1000
+signal on_tower_destroyed
+
+var parent: Node2D = null
+
+var max_hp: int = 0
 var hp: int = 0
 var current_level: int = 0
 var maximum_level: int = 0
@@ -47,6 +51,7 @@ func destroy():
 	# TODO: curent_level set to 0? 
 	# TODO: add destoroy value to overall money
 	texture = null
+	on_tower_destroyed.emit()
 	hide()
 
 func get_state():

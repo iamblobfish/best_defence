@@ -7,6 +7,10 @@ signal on_currency_amount_changed
 func reduce_currency(amount: int):
 	if currency < amount:
 		return false
-	currency = currency - amount
+	currency -= amount
 	on_currency_amount_changed.emit()
 	return true
+
+func add_currency(amount: int):
+	currency += amount
+	on_currency_amount_changed.emit()

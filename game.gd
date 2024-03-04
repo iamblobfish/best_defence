@@ -31,7 +31,7 @@ func window_update():
 
 func _on_map_window_hide():
 	$Window.hide()
-	
+
 # signals sent from window to map
 
 func _on_window_create_or_update():

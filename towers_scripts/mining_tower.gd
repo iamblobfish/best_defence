@@ -1,5 +1,12 @@
 extends BaseTower
 
+var level_to_currency_per_wave = {
+	1: 10,
+	2: 20,
+	3: 30,
+	4: 40
+}
+
 func _init():
 	hp = 50
 	max_hp = 50
@@ -22,3 +29,6 @@ func _init():
 		2: "res://tiles/castles/castle2.png"
 	}
 
+func on_wave_end():
+	# TODO: UI effect for + money
+	PlayerState.add_currency(level_to_currency_per_wave[current_level])
