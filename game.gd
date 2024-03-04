@@ -21,6 +21,7 @@ func window_update():
 	$Window/VBoxContainer/delete.hide()
 	if not tower_state.is_build:
 		$Window/VBoxContainer/Create.show()
+		$Window.show_items(['Attack tower', "Mining tower"])
 	else:
 		$Window/VBoxContainer/delete.show()
 		if tower_state.is_upgradable:
