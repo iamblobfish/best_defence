@@ -41,7 +41,7 @@ func get_tower_state():
 func create_tower(tower_type):
 	#TODO: choise
 	grab_focus()
-	var choise = "Mining"
+	var choise = "Attack"
 	$Tower.set_script(load(towers[choise]))
 	$Tower.create_or_update()
 	
@@ -50,3 +50,6 @@ func delete_tower():
 	grab_focus()
 	$Tower.destroy()
 	$Tower.set_script(load(towers['Base']))
+
+func get_enemies():
+	return get_parent().enemies.keys()
