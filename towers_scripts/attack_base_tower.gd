@@ -1,5 +1,13 @@
 extends BaseTower
 
+var timer: Timer
+
+var level_to_attack_power = {
+	1: 10,
+	2: 15,
+	3: 20
+}
+
 func _init():
 	hp = 150
 	max_hp = 150
@@ -20,3 +28,19 @@ func _init():
 	level_to_texture_dict = {
 		1: "res://tiles/castles/castle3.png"
 	}
+	timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = 1.0
+	timer.connect("timeout", find_enemy_end_fire)
+	timer.start()
+	print(get_child_count())
+
+func find_enemy_end_fire():
+	print("Fire!")
+	var enemy = null
+	if enemy == null:
+		return
+
+func destroy():
+	remove_child(timer)
+	super.destroy()
