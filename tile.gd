@@ -38,10 +38,10 @@ func _on_tower_hidden():
 func get_tower_state():
 	return $Tower.get_state()
 
-func create_tower():
+func create_tower(tower_type):
 	#TODO: choise
 	grab_focus()
-	var choise = "Mining" 
+	var choise = "Mining"
 	$Tower.set_script(load(towers[choise]))
 	$Tower.create_or_update()
 	

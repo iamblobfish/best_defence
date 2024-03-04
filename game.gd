@@ -19,6 +19,7 @@ func window_update():
 	$Window/VBoxContainer/btn3.hide()
 	$Window/VBoxContainer/Create.hide()
 	$Window/VBoxContainer/delete.hide()
+	$Window/VBoxContainer/tower_list.hide()
 	if not tower_state.is_build:
 		$Window/VBoxContainer/Create.show()
 		$Window.show_items(['Attack tower', "Mining tower"])
@@ -35,9 +36,17 @@ func _on_map_window_hide():
 # signals sent from window to map
 
 func _on_window_create_or_update():
-	if $map.focused_tile:
-		$map.focused_tile.create_tower()
-	window_update()
+	if not $Window/VBoxContainer/tower_list.is_anything_selected():
+		$ok.dialog_text = "Select tower type!"
+		$ok.position.y -= 100
+		$ok.show()
+		
+	else:
+		var tower_type = $Window/VBoxContainer/tower_list.get_selected_items()
+		print(tower_type)
+		if $map.focused_tile:
+			$map.focused_tile.create_tower(tower_type)
+		window_update()
 
 func _on_window_delete():
 	if $map.focused_tile:
