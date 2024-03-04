@@ -1,4 +1,4 @@
-extends Control
+extends SubViewport
 
 
 # Called when the node enters the scene tree for the first time.
@@ -8,9 +8,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#print("Viewport: ", get_visible_rect().position)
 	pass
-
-
-func _on_start_pressed():
-	get_tree().change_scene_to_file("res://game.tscn")
-	pass # Replace with function body.

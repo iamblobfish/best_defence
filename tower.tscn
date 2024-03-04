@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://6gdleu73nefl"]
 
-[ext_resource type="Script" path="res://Tower.gd" id="1_xvmxf"]
+[ext_resource type="Script" path="res://towers_scripts/base_tower.gd" id="1_ed73e"]
 
 [node name="Tower" type="Sprite2D"]
 visible = false
-script = ExtResource("1_xvmxf")
+script = ExtResource("1_ed73e")

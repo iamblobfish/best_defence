@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb5qk2r15qo5y"]
+[gd_scene load_steps=3 format=3 uid="uid://cb5qk2r15qo5y"]
 
 [ext_resource type="Script" path="res://choosing_window.gd" id="1_yqdw2"]
+[ext_resource type="FontFile" uid="uid://caqe4g6rm72gy" path="res://arcadeclassic/ARCADECLASSIC.TTF" id="2_f33rw"]
 
 [node name="Window" type="Panel"]
 anchors_preset = 11
@@ -20,14 +21,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="tower_list" type="ItemList" parent="VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_selected_color = Color(0.690196, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_f33rw")
+theme_override_font_sizes/font_size = 16
+auto_height = true
+text_overrun_behavior = 2
+
 [node name="Create" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_f33rw")
 text = "Create"
 
 [node name="delete" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_f33rw")
 text = "Delete"
 
 [node name="btn3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_f33rw")
 text = "Update"
+
+[connection signal="hidden" from="." to="." method="_on_hidden"]
+[connection signal="pressed" from="VBoxContainer/Create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="VBoxContainer/delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="VBoxContainer/btn3" to="." method="_on_btn_3_pressed"]

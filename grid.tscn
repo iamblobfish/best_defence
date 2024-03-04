@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bvurlfffb3rbq"]
 
-[ext_resource type="PackedScene" uid="uid://bluvtptda08em" path="res://forest_tile.tscn" id="1_06fm2"]
+[ext_resource type="PackedScene" uid="uid://bluvtptda08em" path="res://tile.tscn" id="1_06fm2"]
 [ext_resource type="PackedScene" uid="uid://cwevqrqj240o4" path="res://water_tile.tscn" id="2_mhg7m"]
 [ext_resource type="Script" path="res://grid.gd" id="2_npl25"]
 [ext_resource type="PackedScene" uid="uid://cb5qk2r15qo5y" path="res://choosing_window.tscn" id="3_ghqwk"]

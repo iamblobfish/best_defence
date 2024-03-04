@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcfp52aggi4bq"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_4fj6o"]
+[ext_resource type="Texture2D" uid="uid://by1l01ixcmyu3" path="res://tiles/enemy_boss_1.png" id="2_xymex"]
+[ext_resource type="Texture2D" uid="uid://7gnarlepdhf7" path="res://tiles/enemy_boss_12.png" id="3_remb3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkhud"]
+radius = 13.0
+height = 62.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sp80f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xymex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_remb3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_4fj6o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 0)
+shape = SubResource("CapsuleShape2D_vkhud")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sp80f")
+frame_progress = 0.507737

@@ -3,6 +3,8 @@ extends Sprite2D
 
 signal on_tower_destroyed
 
+var parent: Node2D = null
+
 var max_hp: int = 0
 var hp: int = 0
 var current_level: int = 0
@@ -46,6 +48,7 @@ func create_or_update():
 		show()
 
 func destroy():
+	# TODO: curent_level set to 0? 
 	# TODO: add destoroy value to overall money
 	texture = null
 	on_tower_destroyed.emit()
@@ -54,6 +57,8 @@ func destroy():
 func get_state():
 	var tower_state = TowerState.new()
 	tower_state.is_build = tower_type != TowerType.NOTHING
+	if not tower_state.is_build:
+		return tower_state
 	tower_state.tower_type = tower_type
 	tower_state.is_damaged = hp < max_hp
 	tower_state.is_upgradable = current_level < maximum_level
