@@ -29,15 +29,6 @@ func _ready():
 			tile.tower_update.connect(on_tower_update.bind(tile))
 			add_child(tile)
 
-func get_towers():
-	var towers = {}
-	for tile_position in tile_map:
-		var tower_state = tile_map[tile_position].get_tower_state()
-		if tower_state.is_build:
-			towers[tile_position] = tower_state.tower_ref
-	print(towers)
-	return towers
-
 func generate_wave():
 	var dict_of_enemies = { 1: 10 }
 	var dict_of_enemies_scenes = { 1: preload("res://enemy.tscn") }

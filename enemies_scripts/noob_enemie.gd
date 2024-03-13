@@ -1,9 +1,16 @@
 class_name NoobEnemie extends BaseEnemie
 
+var timer: Timer
+
 func _init():
 	hp = 500
 	damage = 10
 	speed = 10
+	timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = 1.0
+	timer.connect("timeout", _process)
+	timer.start()
 	
 func _ready():
 	$health.max_value = hp
@@ -52,7 +59,26 @@ func _process(delta):
 			print(distance)
 		else:
 			linear_velocity = Vector2(0, 0)
+			
 
+func hit(tower, damage):
+	if (tower.hp > 0):
+		tower.take_damage(damage)
+	else:
+		tower = null
+#func _process(delta):
+	#var path_vector = (target.global_position - global_position)
+	#var delta_pos = path_vector.normalized() * speed * delta
+	#if path_vector.length() < delta_pos.length():
+		#delta_pos = path_vector
+	#position = position + delta_pos
+	#if (target.hp <= 0):
+		#queue_free()
+	#if (target.global_position - global_position).length() < 4:
+		#target.take_damage(damage)
+		#queue_free()
+		
+		
 func take_damage(damage):
 	hp -= damage
 	$health.value = hp
@@ -61,4 +87,5 @@ func take_damage(damage):
 	hp_changed.emit(hp)
 
 func on_kill():
+	remove_child(timer)
 	print("Dead!")

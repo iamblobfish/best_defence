@@ -99,14 +99,20 @@ func get_costs_list():
 	return {'Mining': towers_cost[TowerType.MINING], "Attack": towers_cost[TowerType.ATTACK_BASE]}
 	
 
-func get_damage(damage_size):
-	if hp - damage_size <= 0:
-		# TODO: is it true? 
-		hp = 0
-		$health.value = hp
+#func get_damage(damage):
+	#if hp - damage_size <= 0:
+		## TODO: is it true? 
+		#hp = 0
+		#$health.value = hp
+		#destroy()
+	#else: 
+		#hp -= damage_size
+		#$health.value = hp
+	#print(hp)
+	
+func take_damage(damage):
+	hp -= damage
+	$health.value = hp
+	if (hp <= 0):
 		destroy()
-	else: 
-		hp -= damage_size
-		$health.value = hp
-	print(hp)
 
