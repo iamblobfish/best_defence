@@ -56,8 +56,10 @@ func destroy():
 	# TODO: curent_level set to 0? 
 	# TODO: add destoroy value to overall money
 	texture = null
+	PlayerState.reduce_currency(-level_to_destroy_gain[current_level])
 	current_level = 0
 	tower_type = TowerType.NOTHING
+	
 	on_tower_destroyed.emit()
 	hide()
 

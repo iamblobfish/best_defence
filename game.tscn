@@ -44,8 +44,29 @@ position = Vector2(-1, 1)
 initial_position = 1
 size = Vector2i(100, 80)
 
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer"]
+layout_mode = 2
+color = Color(0, 0.462745, 0.803922, 0.968627)
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Hello world!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Popup" type="Popup" parent="."]
-position = Vector2i(376, 224)
+initial_position = 2
 size = Vector2i(200, 100)
 
 [node name="money_bar" type="MarginContainer" parent="."]
