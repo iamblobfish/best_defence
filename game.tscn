@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs537ca2rblp"]
+[gd_scene load_steps=8 format=3 uid="uid://bs537ca2rblp"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_w66bd"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="2_5ot5l"]
 [ext_resource type="PackedScene" uid="uid://crwlur50qm8jl" path="res://map.tscn" id="3_0dd1o"]
 [ext_resource type="Texture2D" uid="uid://byn7rprhnikoq" path="res://tiles/skyх2.png" id="4_v5ua5"]
 [ext_resource type="PackedScene" uid="uid://cb5qk2r15qo5y" path="res://choosing_window.tscn" id="5_onpe8"]
+[ext_resource type="FontFile" uid="uid://caqe4g6rm72gy" path="res://arcadeclassic/ARCADECLASSIC.TTF" id="6_d1qff"]
+[ext_resource type="Texture2D" uid="uid://brpixtxl75kf3" path="res://tiles/star.png" id="7_1c7ck"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -27,10 +29,9 @@ size_flags_stretch_ratio = 0.0
 texture = ExtResource("4_v5ua5")
 
 [node name="Window" parent="." instance=ExtResource("5_onpe8")]
-layout_direction = 1
+visible = false
 layout_mode = 1
-anchors_preset = -1
-offset_left = -193.0
+offset_left = -250.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(574, 325)
@@ -38,6 +39,66 @@ script = ExtResource("2_5ot5l")
 
 [node name="map" parent="." instance=ExtResource("3_0dd1o")]
 position = Vector2(-1, 1)
+
+[node name="ok" type="AcceptDialog" parent="."]
+initial_position = 1
+size = Vector2i(100, 80)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer"]
+layout_mode = 2
+color = Color(0, 0.462745, 0.803922, 0.968627)
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Hello world!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Popup" type="Popup" parent="."]
+initial_position = 2
+size = Vector2i(200, 100)
+
+[node name="money_bar" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 202.0
+offset_bottom = 81.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="container" type="HBoxContainer" parent="money_bar"]
+layout_mode = 2
+alignment = 1
+
+[node name="amount" type="Label" parent="money_bar/container"]
+modulate = Color(0.0509804, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("6_d1qff")
+theme_override_font_sizes/font_size = 40
+text = "1000"
+horizontal_alignment = 1
+
+[node name="coin_img" type="TextureRect" parent="money_bar/container"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("7_1c7ck")
+expand_mode = 3
+stretch_mode = 5
+flip_h = true
 
 [connection signal="btn3" from="Window" to="." method="_on_window_create_or_update"]
 [connection signal="create" from="Window" to="." method="_on_window_create_or_update"]

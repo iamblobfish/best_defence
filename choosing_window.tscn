@@ -1,53 +1,95 @@
-[gd_scene load_steps=3 format=3 uid="uid://cb5qk2r15qo5y"]
+[gd_scene load_steps=6 format=3 uid="uid://cb5qk2r15qo5y"]
 
 [ext_resource type="Script" path="res://choosing_window.gd" id="1_yqdw2"]
 [ext_resource type="FontFile" uid="uid://caqe4g6rm72gy" path="res://arcadeclassic/ARCADECLASSIC.TTF" id="2_f33rw"]
+[ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://rounded_button.tres" id="3_ljgrv"]
+[ext_resource type="StyleBox" uid="uid://jgxiw7ed4psi" path="res://rounded_button_hover.tres" id="4_htqnm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfrgr"]
+bg_color = Color(0.0823529, 0.729412, 1, 1)
 
 [node name="Window" type="Panel"]
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -169.0
+offset_left = -224.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xfrgr")
 script = ExtResource("1_yqdw2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="margin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 20
 
-[node name="tower_list" type="ItemList" parent="VBoxContainer"]
+[node name="vbox" type="VBoxContainer" parent="margin"]
+custom_minimum_size = Vector2(2.08165e-12, 80)
+layout_mode = 2
+
+[node name="tower_list" type="ItemList" parent="margin/vbox"]
 clip_contents = false
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+mouse_force_pass_scroll_events = false
+theme_override_colors/font_color = Color(1, 1, 1, 0.337255)
 theme_override_colors/font_selected_color = Color(0.690196, 1, 1, 1)
+theme_override_constants/h_separation = -8
 theme_override_fonts/font = ExtResource("2_f33rw")
-theme_override_font_sizes/font_size = 16
 auto_height = true
-text_overrun_behavior = 2
+text_overrun_behavior = 0
+max_columns = 2
+same_column_width = true
+icon_mode = 0
 
-[node name="Create" type="Button" parent="VBoxContainer"]
+[node name="Create" type="Button" parent="margin/vbox"]
 layout_mode = 2
+focus_mode = 0
 theme_override_fonts/font = ExtResource("2_f33rw")
+theme_override_styles/normal = ExtResource("3_ljgrv")
+theme_override_styles/hover = ExtResource("4_htqnm")
+theme_override_styles/pressed = ExtResource("3_ljgrv")
 text = "Create"
 
-[node name="delete" type="Button" parent="VBoxContainer"]
+[node name="delete" type="Button" parent="margin/vbox"]
 layout_mode = 2
+focus_mode = 0
 theme_override_fonts/font = ExtResource("2_f33rw")
+theme_override_styles/normal = ExtResource("3_ljgrv")
+theme_override_styles/hover = ExtResource("4_htqnm")
+theme_override_styles/pressed = ExtResource("3_ljgrv")
 text = "Delete"
+text_overrun_behavior = 3
+icon_alignment = 1
 
-[node name="btn3" type="Button" parent="VBoxContainer"]
+[node name="btn3" type="Button" parent="margin/vbox"]
 layout_mode = 2
+focus_mode = 0
 theme_override_fonts/font = ExtResource("2_f33rw")
+theme_override_styles/normal = ExtResource("3_ljgrv")
+theme_override_styles/hover = ExtResource("4_htqnm")
+theme_override_styles/pressed = ExtResource("3_ljgrv")
 text = "Update"
 
-[connection signal="hidden" from="." to="." method="_on_hidden"]
-[connection signal="pressed" from="VBoxContainer/Create" to="." method="_on_create_pressed"]
-[connection signal="pressed" from="VBoxContainer/delete" to="." method="_on_delete_pressed"]
-[connection signal="pressed" from="VBoxContainer/btn3" to="." method="_on_btn_3_pressed"]
+[node name="btn4" type="Button" parent="margin/vbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_f33rw")
+theme_override_styles/normal = ExtResource("3_ljgrv")
+theme_override_styles/hover = ExtResource("4_htqnm")
+theme_override_styles/pressed = ExtResource("3_ljgrv")
+text = "Update"
+
+[connection signal="pressed" from="margin/vbox/Create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="margin/vbox/delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="margin/vbox/btn3" to="." method="_on_btn_3_pressed"]
