@@ -10,6 +10,8 @@ func _process(delta):
 	if path_vector.length() < delta_pos.length():
 		delta_pos = path_vector
 	position = position + delta_pos
+	if (target.hp <= 0):
+		queue_free()
 	if (target.global_position - global_position).length() < 4:
 		target.take_damage(damage)
 		queue_free()
