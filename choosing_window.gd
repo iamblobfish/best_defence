@@ -19,12 +19,12 @@ func _process(delta):
 	pass
 
 func _on_create_pressed():
-	print("Create click")
+	#print("Create click")
 	create.emit()
 
 func show_items(item_names):
 	$VBoxContainer/tower_list.clear()
-	print(40*len(item_names))
+	#print(40*len(item_names))
 	$VBoxContainer/tower_list.size.y = 40*len(item_names)
 	for item in item_names:
 		$VBoxContainer/tower_list.add_item(item)
@@ -36,7 +36,7 @@ func _on_delete_pressed():
 
 
 func _on_forest_tile_2_show_window():
-	print('show vindow in window')
+	#print('show vindow in window')
 	show()
 
 

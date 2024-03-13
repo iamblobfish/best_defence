@@ -68,8 +68,9 @@ func get_state():
 	tower_state.repair_cost = repair_cost * (max_hp - hp) / max_hp
 	tower_state.destroy_gain = level_to_destroy_gain[current_level]
 	tower_state.upgrade_cost = level_to_upgrade_cost[current_level]
+	tower_state.tower_ref = self
 	return tower_state
-	
+  
 
 class TowerState:
 	var is_build: bool
@@ -79,5 +80,7 @@ class TowerState:
 	var is_damaged: bool
 	var repair_cost: int
 	var destroy_gain: int
+	var tower_ref: Node
 
-
+	func _to_string():
+		print("is_build: ", is_build, "\ntower_type: ", tower_type, "\nis_upgradable: ", is_upgradable, "\nupgrade_cost: ", upgrade_cost,  "\nis_damaged: ", is_damaged, "\nrepair_cost: ", repair_cost, "\ndestroy_gain: ", destroy_gain)

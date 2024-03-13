@@ -13,9 +13,9 @@ func _ready():
 
 # signals sent from map to window
 func window_update():
-	print('focused tile: ', $map.focused_tile)
+	#print('focused tile: ', $map.focused_tile)
 	var tower_state =  $map.focused_tile.get_tower_state()
-	print(tower_state)
+	#print(tower_state)
 	$Window/VBoxContainer/btn3.hide()
 	$Window/VBoxContainer/Create.hide()
 	$Window/VBoxContainer/delete.hide()
@@ -27,7 +27,7 @@ func window_update():
 		if tower_state.is_upgradable:
 			$Window/VBoxContainer/btn3.show()
 	$Window.show()
-	print($Camera2D.zoom, $Camera2D.offset)
+	#print($Camera2D.zoom, $Camera2D.offset)
 
 func _on_map_window_hide():
 	$Window.hide()
@@ -46,11 +46,11 @@ func _on_window_delete():
 
 
 func _on_camera_2d_move():
-	print('move')
+	#print('move')
 	
-	print($Window.position)
-	print(get_global_transform_with_canvas())
-	print($Camera2D.zoom)
+	#print($Window.position)
+	#print(get_global_transform_with_canvas())
+	#print($Camera2D.zoom)
 	$Window.position.x *= $Camera2D.zoom.x
 	#$Window.position+=get_global_transform_with_canvas()[2]
 	#$Window.size+=get_global_transform_with_canvas()[2]

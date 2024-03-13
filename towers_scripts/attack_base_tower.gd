@@ -32,7 +32,7 @@ func _init():
 	timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = 1.0
-	timer.connect("timeout", find_enemy_end_fire)
+	timer.connect("timeout", find_enemy_and_fire)
 	timer.start()
 
 func find_closest_enemy(enemies):
@@ -47,7 +47,7 @@ func find_closest_enemy(enemies):
 			closest_enemy = enemy
 	return closest_enemy
 
-func find_enemy_end_fire():
+func find_enemy_and_fire():
 	var enemies = get_parent().get_enemies()
 	var enemy = find_closest_enemy(enemies)
 	if enemy == null:

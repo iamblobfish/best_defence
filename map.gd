@@ -5,6 +5,7 @@ var tile_map = {}
 var focused_tile = null
 var margin = Vector2(100, 100)
 var enemies = {}
+var towers = {}
 var tile_width = 128
 var tile_heiht = 66
 
@@ -42,3 +43,10 @@ func on_tile_focused(tile):
 func on_tile_unfocused(tile):
 	focused_tile = null
 	window_hide.emit()
+	
+func get_towers():
+	for tile_position in tile_map:
+		var tower_state = tile_map[tile_position].get_tower_state()
+		if tower_state.is_build:
+			towers[tile_position] = tower_state.tower_ref
+	return towers

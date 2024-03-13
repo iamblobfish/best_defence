@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcfp52aggi4bq"]
+[gd_scene load_steps=8 format=3 uid="uid://dcfp52aggi4bq"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_4fj6o"]
+[ext_resource type="Script" path="res://enemies_scripts/noob_enemie.gd" id="1_prmy0"]
 [ext_resource type="Texture2D" uid="uid://by1l01ixcmyu3" path="res://tiles/enemy_boss_1.png" id="2_xymex"]
+[ext_resource type="FontFile" uid="uid://caqe4g6rm72gy" path="res://arcadeclassic/ARCADECLASSIC.TTF" id="3_0lq8d"]
 [ext_resource type="Texture2D" uid="uid://7gnarlepdhf7" path="res://tiles/enemy_boss_12.png" id="3_remb3"]
+[ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://rounded_button.tres" id="4_i0s5t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkhud"]
 radius = 13.0
@@ -24,7 +26,7 @@ animations = [{
 
 [node name="Enemy" type="RigidBody2D"]
 gravity_scale = 0.0
-script = ExtResource("1_4fj6o")
+script = ExtResource("1_prmy0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 0)
@@ -33,3 +35,12 @@ shape = SubResource("CapsuleShape2D_vkhud")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sp80f")
 frame_progress = 0.507737
+
+[node name="health" type="ProgressBar" parent="."]
+offset_left = -40.0
+offset_top = -51.0
+offset_right = 32.0
+offset_bottom = -34.0
+theme_override_fonts/font = ExtResource("3_0lq8d")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/background = ExtResource("4_i0s5t")
