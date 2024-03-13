@@ -2,13 +2,14 @@ extends Hex
 
 signal tile_focused
 signal tile_unfocused
+signal tower_update
 
 var focus = false
 
 var towers = {
-	"Base" : "res://towers_scripts/base_tower.gd",
-	"Attack" : "res://towers_scripts/attack_base_tower.gd",
-	"Mining" : "res://towers_scripts/mining_tower.gd"
+	0 : "res://towers_scripts/base_tower.gd",
+	1 : "res://towers_scripts/attack_base_tower.gd",
+	2 : "res://towers_scripts/mining_tower.gd"
 }
 
 func _ready():
@@ -37,19 +38,28 @@ func _on_tower_hidden():
 	
 func get_tower_state():
 	return $Tower.get_state()
+	
+	
 
 func create_tower(tower_type):
-	#TODO: choise
 	grab_focus()
-	var choise = "Attack"
-	$Tower.set_script(load(towers[choise]))
+	#var choise = "Attack"
+	$Tower.set_script(load(towers[tower_type+1]))
 	$Tower.create_or_update()
+	tower_update.emit()
 	
 
 func delete_tower():
 	grab_focus()
-	$Tower.destroy()
-	$Tower.set_script(load(towers['Base']))
+	if $Tower.tower_type != $Tower.TowerType.NOTHING:
+		$Tower.destroy()
+	$Tower.set_script(load(towers[0]))
+	tower_update.emit()
+	
+
+func damage_tower(damage):
+	$Tower.get_damage(damage)
 
 func get_enemies():
 	return get_parent().enemies.keys()
+	

@@ -23,6 +23,7 @@ func _ready():
 			tile_map[tile.position] = tile
 			tile.tile_focused.connect(on_tile_focused.bind(tile))
 			tile.tile_unfocused.connect(on_tile_unfocused.bind(tile))
+			tile.tower_update.connect(on_tower_update.bind(tile))
 			add_child(tile)
 	for i in range(4):
 		var enemie = enemie_scene.instantiate()
@@ -42,3 +43,6 @@ func on_tile_focused(tile):
 func on_tile_unfocused(tile):
 	focused_tile = null
 	window_hide.emit()
+	
+func on_tower_update(tile):
+	window_update.emit()

@@ -61,3 +61,4 @@ func find_enemy_end_fire():
 func destroy():
 	remove_child(timer)
 	super.destroy()
+	

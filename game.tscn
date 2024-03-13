@@ -27,10 +27,9 @@ size_flags_stretch_ratio = 0.0
 texture = ExtResource("4_v5ua5")
 
 [node name="Window" parent="." instance=ExtResource("5_onpe8")]
-layout_direction = 1
+visible = false
 layout_mode = 1
-anchors_preset = -1
-offset_left = -193.0
+offset_left = -250.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(574, 325)
