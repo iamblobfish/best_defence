@@ -1,12 +1,14 @@
 extends Control
 
+@onready var money = $money_bar/container/amount
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#$Window.create.connect(_on_window_create)
-	#$Window.delete.connect(_on_window_delete)
-	#$Window.btn3.connect(_on_window_btn3)
-	#$background.position = Vector2(-$background.size.x/4, -$background.size.y/4)
+	money.text = str(PlayerState.currency)
 	pass # Replace with function body.
+
+func _process(delta):
+	money.text = str(PlayerState.currency)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @onready var window = $Window/margin/vbox
