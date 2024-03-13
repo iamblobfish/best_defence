@@ -16,9 +16,8 @@ func _process(delta):
 var TowerType = TowerDescriptions.TowerType
 # signals sent from map to window
 func window_update():
-	print('focused tile: ', $map.focused_tile)
+	#print('focused tile: ', $map.focused_tile)
 	var tower_state =  $map.focused_tile.get_tower_state()
-	
 	for i in window.get_children():
 		i.hide()
 	if not tower_state.is_build:
@@ -46,6 +45,7 @@ func on_add_butt_click():
 		$map.focused_tile.damage_tower(10)
 	pass
 
+
 func _on_map_window_hide():
 	for i in window.get_children():
 		i.hide()
@@ -71,11 +71,11 @@ func _on_window_delete():
 	window_update() 
 
 func _on_camera_2d_move():
-	print('move')
+	#print('move')
 	
-	print($Window.position)
-	print(get_global_transform_with_canvas())
-	print($Camera2D.zoom)
+	#print($Window.position)
+	#print(get_global_transform_with_canvas())
+	#print($Camera2D.zoom)
 	$Window.position.x *= $Camera2D.zoom.x
 	#$Window.position+=get_global_transform_with_canvas()[2]
 	#$Window.size+=get_global_transform_with_canvas()[2]

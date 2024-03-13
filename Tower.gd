@@ -21,7 +21,7 @@ func add():
 			show()
 		return 0
 	else:
-		print("Maximum tower")
+		#print("Maximum tower")
 		return 1
 	
 

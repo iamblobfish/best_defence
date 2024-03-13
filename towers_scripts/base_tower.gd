@@ -79,7 +79,7 @@ func get_state():
 	tower_state.upgrade_cost = level_to_upgrade_cost[current_level]
 	tower_state.tower_ref = self
 	return tower_state
-	
+  
 
 class TowerState:
 	var is_build: bool
@@ -109,8 +109,4 @@ func get_damage(damage_size):
 		hp -= damage_size
 		$health.value = hp
 	print(hp)
-	
 
-	
-	
-	

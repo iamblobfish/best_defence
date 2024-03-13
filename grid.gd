@@ -2,7 +2,7 @@ extends TileMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print($ForestTile2.position)
+	#print($ForestTile2.position)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -10,7 +10,7 @@ func _process(delta):
 	pass
 	
 func _on_forest_tile_2_show_window():
-	print('entered')
+	#print('entered')
 	#var t = $ForestTile2/Tower.get_tower()
 	#$Window/VBoxContainer/btn3.hide()
 	#$Window/VBoxContainer/Create.hide()
@@ -38,7 +38,7 @@ func _input(event):
 
 func _on_forest_tile_2_tile_focus_entered():
 	
-	print('entered')
+	#print('entered')
 	var t = $ForestTile2/Tower.get_tower()
 	$Window/VBoxContainer/btn3.hide()
 	$Window/VBoxContainer/Create.hide()
@@ -69,5 +69,5 @@ func _on_forest_tile_2_tile_focus_entered():
 
 
 func _on_forest_tile_2_pressed():
-	print('pressed')
+	#print('pressed')
 

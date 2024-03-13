@@ -22,7 +22,7 @@ func _on_pressed():
 		release_focus()
 		tile_unfocused.emit()
 	else:
-		print('show vindow in tile')
+		#print('show vindow in tile')
 		#print(focus)
 		tile_focused.emit()
 		#print(show_window.get_connections())

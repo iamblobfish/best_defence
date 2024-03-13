@@ -36,11 +36,13 @@ func hide_items():
 	$margin/vbox/tower_list.clear()
 	$margin/vbox/tower_list
 
+
 func _on_delete_pressed():
 	delete.emit()
 	
 
 func _on_forest_tile_2_show_window():
+	#print('show vindow in window')
 	show()
 
 func _on_forest_tile_focus_exited():
