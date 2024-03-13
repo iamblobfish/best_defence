@@ -1,5 +1,5 @@
 class_name BaseEnemie
-extends RigidBody2D
+extends AnimatedSprite2D
 
 signal hp_changed(new_value)
 signal killed

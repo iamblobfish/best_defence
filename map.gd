@@ -30,7 +30,7 @@ func _ready():
 			add_child(tile)
 
 func generate_wave():
-	var dict_of_enemies = { 1: 10 }
+	var dict_of_enemies = { 1: 2 }
 	var dict_of_enemies_scenes = { 1: preload("res://enemy.tscn") }
 	for type in dict_of_enemies:
 		for count in dict_of_enemies[type]:
@@ -69,7 +69,7 @@ func on_enemy_died(enemy):
 
 func on_tile_focused(tile):
 	focused_tile = tile
-	if get_towers().size() == 5:
+	if get_towers().size() == 1:
 		generate_wave()
 	window_update.emit()
 
