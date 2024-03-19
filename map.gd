@@ -29,18 +29,9 @@ func _ready():
 			tile.tower_update.connect(on_tower_update.bind(tile))
 			add_child(tile)
 
-func get_towers():
-	var towers = {}
-	for tile_position in tile_map:
-		var tower_state = tile_map[tile_position].get_tower_state()
-		if tower_state.is_build:
-			towers[tile_position] = tower_state.tower_ref
-	print(towers)
-	return towers
-
 func generate_wave():
-	var dict_of_enemies = { 1: 10 }
-	var dict_of_enemies_scenes = { 1: preload("res://enemy.tscn") }
+	var dict_of_enemies = { 1: 1 , 2:3}
+	var dict_of_enemies_scenes = { 1: preload("res://enemy.tscn"), 2: preload("res://enemy_small.tscn") }
 	for type in dict_of_enemies:
 		for count in dict_of_enemies[type]:
 			var enemie = dict_of_enemies_scenes[type].instantiate()
@@ -78,7 +69,7 @@ func on_enemy_died(enemy):
 
 func on_tile_focused(tile):
 	focused_tile = tile
-	if get_towers().size() == 5:
+	if get_towers().size() == 1:
 		generate_wave()
 	window_update.emit()
 
@@ -90,6 +81,7 @@ func on_tower_update(tile):
 	window_update.emit()
 
 func get_towers():
+	var towers = {}
 	for tile_position in tile_map:
 		var tower_state = tile_map[tile_position].get_tower_state()
 		if tower_state.is_build:

@@ -6,7 +6,7 @@ signal on_tower_destroyed
 var parent: Node2D = null
 
 var max_hp: int = 0
-var hp: int = 1000
+var hp: int = 0
 var current_level: int = 0
 var maximum_level: int = 0
 var tower_type: TowerType = TowerType.NOTHING
@@ -53,19 +53,23 @@ func create_or_update():
 		$health.show()
 
 func destroy():
-	# TODO: curent_level set to 0? 
-	# TODO: add destoroy value to overall money
 	texture = null
-	PlayerState.reduce_currency(-level_to_destroy_gain[current_level])
 	current_level = 0
 	tower_type = TowerType.NOTHING
+	print(tower_type)
+	hide()
 	
-	on_tower_destroyed.emit()
+func disassemble():
+	PlayerState.reduce_currency(-level_to_destroy_gain[current_level])
+	texture = null
+	current_level = 0
+	tower_type = TowerType.NOTHING
+	print(tower_type)
 	hide()
 
 func get_state():
 	var tower_state = TowerState.new()
-	tower_state.is_build = tower_type != TowerType.NOTHING
+	tower_state.is_build = (tower_type != TowerType.NOTHING)
 	if not tower_state.is_build:
 		return tower_state
 	tower_state.tower_type = tower_type
@@ -99,14 +103,13 @@ func get_costs_list():
 	return {'Mining': towers_cost[TowerType.MINING], "Attack": towers_cost[TowerType.ATTACK_BASE]}
 	
 
-func get_damage(damage_size):
-	if hp - damage_size <= 0:
-		# TODO: is it true? 
+func make_damage(damage):
+	if hp - damage <= 0:
 		hp = 0
-		$health.value = hp
 		destroy()
 	else: 
-		hp -= damage_size
+		hp -= damage
 		$health.value = hp
 	print(hp)
+	
 

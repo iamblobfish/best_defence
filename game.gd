@@ -35,9 +35,9 @@ func window_update():
 	$Window.show()
 	print($Camera2D.zoom, $Camera2D.offset)
 	#print(window.get_child(2).text)
-	window.get_child(4).pressed.connect(on_add_butt_click)
-	window.get_child(4).text = "Damage"
-	window.get_child(4).show()
+	#window.get_child(4).pressed.connect(on_add_butt_click)
+	#window.get_child(4).text = "Damage"
+	#window.get_child(4).show()
 	
 
 func on_add_butt_click():
