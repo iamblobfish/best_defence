@@ -1,6 +1,7 @@
 extends Node2D
 signal window_hide
 signal window_update
+signal no_towers
 var tile_map = {}
 var focused_tile = null
 var margin = Vector2(100, 100)
@@ -86,4 +87,6 @@ func get_towers():
 		var tower_state = tile_map[tile_position].get_tower_state()
 		if tower_state.is_build:
 			towers[tile_position] = tower_state.tower_ref
+	if len(towers) == 0:
+		no_towers.emit()
 	return towers

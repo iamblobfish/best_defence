@@ -44,7 +44,7 @@ position = Vector2(-1, 1)
 initial_position = 1
 size = Vector2i(100, 80)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="big_text" type="CenterContainer" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -53,14 +53,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="CenterContainer"]
+[node name="ColorRect" type="ColorRect" parent="big_text"]
 layout_mode = 2
 color = Color(0, 0.462745, 0.803922, 0.968627)
 
-[node name="Label" type="Label" parent="CenterContainer"]
+[node name="Label" type="Label" parent="big_text"]
+modulate = Color(0.00392157, 0.00392157, 0.00392157, 1)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("6_d1qff")
+theme_override_font_sizes/font_size = 70
 text = "Hello world!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -104,5 +107,6 @@ flip_h = true
 [connection signal="create" from="Window" to="." method="_on_window_create_or_update"]
 [connection signal="delete" from="Window" to="." method="_on_window_delete"]
 [connection signal="move" from="Camera2D" to="." method="_on_camera_2d_move"]
+[connection signal="no_towers" from="map" to="." method="_on_map_no_towers"]
 [connection signal="window_hide" from="map" to="." method="_on_map_window_hide"]
 [connection signal="window_update" from="map" to="." method="window_update"]

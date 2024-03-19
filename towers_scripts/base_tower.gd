@@ -2,6 +2,7 @@ class_name BaseTower
 extends Sprite2D
 
 signal on_tower_destroyed
+signal not_enough_money
 
 var parent: Node2D = null
 
@@ -37,9 +38,13 @@ func create_or_update():
 	current_level += 1
 	
 	if current_level == 1:
-		PlayerState.reduce_currency(towers_cost[tower_type])
+		if not PlayerState.reduce_currency(towers_cost[tower_type]):
+			current_level -= 1
+			return -1
 	else:
-		PlayerState.reduce_currency(level_to_upgrade_cost[current_level-1])
+		if not PlayerState.reduce_currency(level_to_upgrade_cost[current_level-1]):
+			current_level -= 1
+			return -1
 	
 	texture = ImageTexture.create_from_image(
 		Image.load_from_file(level_to_texture_dict[current_level])

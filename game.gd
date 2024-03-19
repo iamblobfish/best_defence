@@ -5,6 +5,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	money.text = str(PlayerState.currency)
+	PlayerState.out_of_money.connect(game_over)
 	pass # Replace with function body.
 
 func _process(delta):
@@ -62,7 +63,10 @@ func _on_window_create_or_update():
 		var tower_type = window.get_child(0).get_selected_items()[0]
 		print("tower type: ", tower_type)
 		if $map.focused_tile:
-			$map.focused_tile.create_tower(tower_type)
+			if $map.focused_tile.create_tower(tower_type) == -1:
+				$ok.dialog_text = "Not enough money!"
+				$ok.position.y -= 100
+				$ok.show()
 		window_update()
 
 func _on_window_delete():
@@ -85,4 +89,18 @@ func _on_camera_2d_move():
 	#$Window.position.x -= 200
 	pass
 
-
+func game_over():
+	$big_text/Label.text = "Game over"
+	var timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = 5
+	timer.connect("timeout", homecomming.bind(timer))
+	$big_text.show()
+	timer.start()
+	
+	
+func homecomming(timer):
+	$big_text.hide()
+	remove_child(timer)
+	get_tree().change_scene_to_file("res://Home.tscn")
+	

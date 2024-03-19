@@ -66,7 +66,6 @@ func hit_tower():
 		if distance <= damage_distance:
 			tower.make_damage(damage)
 		
-		
 func make_damage(damage):
 	hp -= damage
 	if (hp <= 0):
