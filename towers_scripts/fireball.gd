@@ -13,7 +13,7 @@ func _process(delta):
 	if (target.hp <= 0):
 		queue_free()
 	if (target.global_position - global_position).length() < 4:
-		target.take_damage(damage)
+		target.make_damage(damage)
 		queue_free()
 
 func init(enemy_target: Node2D, dmg: int, init_position: Vector2):

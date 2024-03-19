@@ -30,8 +30,8 @@ func _ready():
 			add_child(tile)
 
 func generate_wave():
-	var dict_of_enemies = { 1: 2 }
-	var dict_of_enemies_scenes = { 1: preload("res://enemy.tscn") }
+	var dict_of_enemies = { 1: 1 , 2:3}
+	var dict_of_enemies_scenes = { 1: preload("res://enemy.tscn"), 2: preload("res://enemy_small.tscn") }
 	for type in dict_of_enemies:
 		for count in dict_of_enemies[type]:
 			var enemie = dict_of_enemies_scenes[type].instantiate()

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bk00gnehigwqv"]
+
+[ext_resource type="Texture2D" uid="uid://d4jgrohkl7em4" path="res://tiles/small_enemy.png" id="1_p38bg"]
+[ext_resource type="Script" path="res://enemies_scripts/small_enemie.gd" id="2_2oxiy"]
+[ext_resource type="FontFile" uid="uid://caqe4g6rm72gy" path="res://arcadeclassic/ARCADECLASSIC.TTF" id="4_jxhev"]
+[ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://rounded_button.tres" id="5_er1so"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v5wne"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p38bg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_p38bg")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 6.0
+}]
+
+[node name="Enemy" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_v5wne")
+animation = &"new_animation"
+script = ExtResource("2_2oxiy")
+
+[node name="health" type="ProgressBar" parent="."]
+offset_left = -48.0
+offset_top = -72.0
+offset_right = 41.0
+offset_bottom = -45.0
+theme_override_fonts/font = ExtResource("4_jxhev")
+theme_override_styles/background = ExtResource("5_er1so")
