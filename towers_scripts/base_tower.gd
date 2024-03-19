@@ -53,19 +53,23 @@ func create_or_update():
 		$health.show()
 
 func destroy():
-	# TODO: curent_level set to 0? 
-	# TODO: add destoroy value to overall money
 	texture = null
-	#PlayerState.reduce_currency(-level_to_destroy_gain[current_level])
 	current_level = 0
 	tower_type = TowerType.NOTHING
+	print(tower_type)
+	hide()
 	
-	on_tower_destroyed.emit()
+func disassemble():
+	PlayerState.reduce_currency(-level_to_destroy_gain[current_level])
+	texture = null
+	current_level = 0
+	tower_type = TowerType.NOTHING
+	print(tower_type)
 	hide()
 
 func get_state():
 	var tower_state = TowerState.new()
-	tower_state.is_build = tower_type != TowerType.NOTHING
+	tower_state.is_build = (tower_type != TowerType.NOTHING)
 	if not tower_state.is_build:
 		return tower_state
 	tower_state.tower_type = tower_type

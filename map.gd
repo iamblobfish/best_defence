@@ -81,6 +81,7 @@ func on_tower_update(tile):
 	window_update.emit()
 
 func get_towers():
+	var towers = {}
 	for tile_position in tile_map:
 		var tower_state = tile_map[tile_position].get_tower_state()
 		if tower_state.is_build:

@@ -27,4 +27,3 @@ offset = Vector2(2.08165e-12, 2.08165e-12)
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="draw" from="Tower" to="." method="_on_tower_draw"]
 [connection signal="hidden" from="Tower" to="." method="_on_tower_hidden"]
-[connection signal="on_tower_destroyed" from="Tower" to="." method="delete_tower"]

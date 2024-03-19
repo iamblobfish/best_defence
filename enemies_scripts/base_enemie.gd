@@ -20,10 +20,6 @@ func _ready():
 	timer.wait_time = damage_speed
 	timer.connect("timeout", hit_tower)
 	timer.start()
-	print(timer.time_left)
-	print(timer.one_shot)
-	print(timer.wait_time)
-	print("timer_start")
 	$health.max_value = hp
 	$health.value = hp
 	top_level = true
@@ -43,27 +39,27 @@ func find_closest_tower():
 
 
 func _process(delta):
-
 	var tower = find_closest_tower()
 	if tower == null:
-		print("no towers")
 		return
 	else:
 		var path_vector = (tower.global_position - global_position)
+		var delta_pos = path_vector.normalized() * speed * delta
 		if (path_vector.length() <= damage_distance):
 			return
-		var delta_pos = path_vector.normalized() * speed * delta
-		if path_vector.length() - damage_distance < delta_pos.length():
-			delta_pos = path_vector - path_vector.normalized() * 50
+		if path_vector.length() - damage_distance+1 < delta_pos.length():
+			delta_pos = path_vector - path_vector.normalized() * damage_distance
 		position = position + delta_pos
+		
 		
 			
 
 func hit_tower():
 	var tower = find_closest_tower()
-	var distance = global_position.distance_to(tower.global_position)
-	if distance < damage_distance:
-		tower.make_damage(damage)
+	if tower:
+		var distance = global_position.distance_to(tower.global_position)
+		if distance <= damage_distance:
+			tower.make_damage(damage)
 		
 		
 func make_damage(damage):

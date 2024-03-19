@@ -51,14 +51,13 @@ func create_tower(tower_type):
 
 func delete_tower():
 	grab_focus()
-	if $Tower.tower_type != $Tower.TowerType.NOTHING:
-		$Tower.destroy()
+	$Tower.disassemble()
 	$Tower.set_script(load(towers[0]))
 	tower_update.emit()
 	
 
 func damage_tower(damage):
-	$Tower.get_damage(damage)
+	$Tower.make_damage(damage)
 
 func get_enemies():
 	return get_parent().enemies.keys()
