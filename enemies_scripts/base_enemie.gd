@@ -41,12 +41,17 @@ func find_closest_tower():
 func _process(delta):
 	var tower = find_closest_tower()
 	if tower == null:
+		animation = "stay"
 		return
 	else:
 		var path_vector = (tower.global_position - global_position)
 		var delta_pos = path_vector.normalized() * speed * delta
 		if (path_vector.length() <= damage_distance):
+			animation = "stay"
 			return
+		else:
+			animation = "walk"
+			flip_h = path_vector.x < 0
 		if path_vector.length() - damage_distance+1 < delta_pos.length():
 			delta_pos = path_vector - path_vector.normalized() * damage_distance
 		position = position + delta_pos

@@ -1,15 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk00gnehigwqv"]
+[gd_scene load_steps=7 format=3 uid="uid://bk00gnehigwqv"]
 
 [ext_resource type="Texture2D" uid="uid://d4jgrohkl7em4" path="res://tiles/small_enemy.png" id="1_p38bg"]
 [ext_resource type="Script" path="res://enemies_scripts/small_enemie.gd" id="2_2oxiy"]
+[ext_resource type="Texture2D" uid="uid://d1jpmeudw822q" path="res://tiles/small_enemy2.png" id="2_o626v"]
 [ext_resource type="FontFile" uid="uid://caqe4g6rm72gy" path="res://arcadeclassic/ARCADECLASSIC.TTF" id="4_jxhev"]
 [ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://rounded_button.tres" id="5_er1so"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v5wne"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p38bg")
+}],
 "loop": true,
-"name": &"default",
+"name": &"stay",
 "speed": 5.0
 }, {
 "frames": [{
@@ -17,16 +21,16 @@ animations = [{
 "texture": ExtResource("1_p38bg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("1_p38bg")
+"texture": ExtResource("2_o626v")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"walk",
 "speed": 6.0
 }]
 
 [node name="Enemy" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_v5wne")
-animation = &"new_animation"
+animation = &"walk"
 script = ExtResource("2_2oxiy")
 
 [node name="health" type="ProgressBar" parent="."]

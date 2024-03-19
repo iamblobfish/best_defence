@@ -11,17 +11,26 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_xymex")
+}],
+"loop": true,
+"name": &"stay",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xymex")
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_remb3")
 }],
 "loop": true,
-"name": &"default",
+"name": &"walk",
 "speed": 5.0
 }]
 
 [node name="Enemy" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_v5wne")
+animation = &"walk"
 script = ExtResource("3_cvqe6")
 
 [node name="health" type="ProgressBar" parent="."]
