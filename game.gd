@@ -70,7 +70,7 @@ func _on_window_create_or_update():
 
 func _on_window_delete():
 	if $map.focused_tile:
-		$map.focused_tile.delete_tower_with_gain()
+		$map.focused_tile.delete_tower()
 	window_update() 
 
 func _on_camera_2d_move():
