@@ -6,3 +6,4 @@ func _init():
 	speed = 10
 	damage_speed = 1
 	damage_distance = 60
+	gain = 3

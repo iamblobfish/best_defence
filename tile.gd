@@ -45,9 +45,12 @@ func create_tower(tower_type):
 	grab_focus()
 	#var choise = "Attack"
 	$Tower.set_script(load(towers[tower_type+1]))
-	$Tower.create_or_update()
+	var result = $Tower.create_or_update()
+	if (result == -1):
+		$Tower.set_script(load(towers[0]))
+		return -1
 	tower_update.emit()
-	
+
 
 func delete_tower():
 	grab_focus()

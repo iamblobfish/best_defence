@@ -5,7 +5,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	money.text = str(PlayerState.currency)
-	PlayerState.out_of_money.connect(game_over)
+	# PlayerState.out_of_money.connect(game_over)
 	pass # Replace with function body.
 
 func _process(delta):
@@ -39,7 +39,6 @@ func window_update():
 	#window.get_child(4).pressed.connect(on_add_butt_click)
 	#window.get_child(4).text = "Damage"
 	#window.get_child(4).show()
-	
 
 func on_add_butt_click():
 	if $map.focused_tile:
@@ -71,7 +70,7 @@ func _on_window_create_or_update():
 
 func _on_window_delete():
 	if $map.focused_tile:
-		$map.focused_tile.delete_tower()
+		$map.focused_tile.delete_tower_with_gain()
 	window_update() 
 
 func _on_camera_2d_move():
@@ -103,4 +102,9 @@ func homecomming(timer):
 	$big_text.hide()
 	remove_child(timer)
 	get_tree().change_scene_to_file("res://Home.tscn")
-	
+
+func set_wave_timeout(time: int):
+	$WaveInfoContainer/WaveTimeout.text = "Next wave in " + str(time)
+
+func set_wave_number(num: int):
+	$WaveInfoContainer/WaveNumber.text = "Current wave " + str(num)

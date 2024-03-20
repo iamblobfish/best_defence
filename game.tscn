@@ -103,6 +103,27 @@ expand_mode = 3
 stretch_mode = 5
 flip_h = true
 
+[node name="WaveInfoContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 157.0
+offset_bottom = 116.0
+
+[node name="WaveTimeout" type="Label" parent="WaveInfoContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_d1qff")
+theme_override_font_sizes/font_size = 25
+text = "Next wave in "
+horizontal_alignment = 1
+
+[node name="WaveNumber" type="Label" parent="WaveInfoContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_d1qff")
+theme_override_font_sizes/font_size = 25
+text = "Current wave"
+
 [connection signal="btn3" from="Window" to="." method="_on_window_create_or_update"]
 [connection signal="create" from="Window" to="." method="_on_window_create_or_update"]
 [connection signal="delete" from="Window" to="." method="_on_window_delete"]
