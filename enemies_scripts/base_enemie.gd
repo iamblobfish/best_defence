@@ -8,6 +8,7 @@ var damage: int = 0
 var damage_speed: int = 0
 var damage_distance: int = 0
 var speed: int = 0
+var gain: int = 0
 
 var timer: Timer
 
@@ -52,12 +53,9 @@ func _process(delta):
 		else:
 			animation = "walk"
 			flip_h = path_vector.x < 0
-		if path_vector.length() - damage_distance+1 < delta_pos.length():
+		if path_vector.length() - damage_distance + 1 < delta_pos.length():
 			delta_pos = path_vector - path_vector.normalized() * damage_distance
 		position = position + delta_pos
-		
-		
-			
 
 func hit_tower():
 	var tower = find_closest_tower()
@@ -66,11 +64,12 @@ func hit_tower():
 		if distance <= damage_distance:
 			tower.make_damage(damage)
 		
-func make_damage(damage):
+func take_damage(damage):
 	hp -= damage
 	if (hp <= 0):
 		hp = 0
 		killed.emit()
+		PlayerState.add_currency(gain)
 		remove_child(timer)
 	$health.value = hp
 

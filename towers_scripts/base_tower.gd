@@ -4,8 +4,6 @@ extends Sprite2D
 signal on_tower_destroyed
 signal not_enough_money
 
-var parent: Node2D = null
-
 var max_hp: int = 0
 var hp: int = 0
 var current_level: int = 0
@@ -29,10 +27,12 @@ var towers_cost = {
 }
 
 func _init():
+	texture = null
 	pass
 	# TODO: tile specifications
 
 func create_or_update():
+	init()
 	if current_level >= maximum_level:
 		return
 	current_level += 1
@@ -57,6 +57,9 @@ func create_or_update():
 		show()
 		$health.show()
 
+func init():
+	return
+
 func destroy():
 	texture = null
 	current_level = 0
@@ -65,12 +68,11 @@ func destroy():
 	hide()
 	
 func disassemble():
-	PlayerState.reduce_currency(-level_to_destroy_gain[current_level])
+	PlayerState.add_currency(level_to_destroy_gain[current_level])
 	texture = null
 	current_level = 0
 	tower_type = TowerType.NOTHING
 	print(tower_type)
-	hide()
 
 func get_state():
 	var tower_state = TowerState.new()
@@ -115,6 +117,6 @@ func make_damage(damage):
 	else: 
 		hp -= damage
 		$health.value = hp
-	print(hp)
+	#print(hp)
 	
 

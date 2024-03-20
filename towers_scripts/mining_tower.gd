@@ -1,13 +1,13 @@
 extends BaseTower
 
 var level_to_currency_per_wave = {
-	1: 10,
-	2: 20,
-	3: 30,
-	4: 40
+	1: 15,
+	2: 25,
+	3: 35,
+	4: 45
 }
 
-func _init():
+func init():
 	hp = 50
 	max_hp = 50
 	tower_type = TowerType.MINING

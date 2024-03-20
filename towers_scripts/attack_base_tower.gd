@@ -9,7 +9,7 @@ var level_to_attack_power = {
 	3: 20
 }
 
-func _init():
+func init():
 	hp = 150
 	max_hp = 150
 	tower_type = TowerType.ATTACK_BASE

@@ -6,16 +6,19 @@ var tile_map = {}
 var focused_tile = null
 var margin = Vector2(100, 100)
 var enemies = {}
-var towers = {}
+# var towers = {}
 var tile_width = 128
 var tile_height = 66
 var tiles_in_column = 5
 var tiles_in_row = 8
 
+var wave_timer
+var time_to_wave = 19
+var next_wave: int = 1
+
 # Called when the node enters the scene tree for the firrst time.
 func _ready():
 	var scene = preload('res://tile.tscn')
-	var enemie_scene = preload("res://enemy.tscn")
 	
 	for i in range(tiles_in_column * 2):
 		for j in range(tiles_in_row / 2):
@@ -29,9 +32,40 @@ func _ready():
 			tile.tile_unfocused.connect(on_tile_unfocused.bind(tile))
 			tile.tower_update.connect(on_tower_update.bind(tile))
 			add_child(tile)
+	start_game()
+
+func start_game():
+	wave_timer = Timer.new()
+	add_child(wave_timer)
+	wave_timer.wait_time = 1.0
+	wave_timer.connect("timeout", wave_tick)
+	wave_timer.start()
+
+func end_game():
+	remove_child(wave_timer)
+	for enemie in enemies:
+		remove_child(enemie)
+	enemies = {}
+	get_parent().game_over()
+
+func wave_tick():
+	time_to_wave -= 1
+	if time_to_wave == 0:
+		generate_wave()
+		time_to_wave = 19
+	get_parent().set_wave_timeout(time_to_wave)
 
 func generate_wave():
-	var dict_of_enemies = { 1: 1 , 2:3}
+	get_parent().set_wave_number(next_wave)
+	var towers = get_towers()
+	if towers.size() == 0:
+		end_game()
+		return
+	for tower in towers:
+		var tower_state = towers[tower].get_state()
+		if tower_state.tower_type == BaseTower.TowerType.MINING:
+			tower_state.tower_ref.on_wave_end()
+	var dict_of_enemies = { 1: 4 + next_wave * 2, 2: 2 + next_wave }
 	var dict_of_enemies_scenes = { 1: preload("res://enemy.tscn"), 2: preload("res://enemy_small.tscn") }
 	for type in dict_of_enemies:
 		for count in dict_of_enemies[type]:
@@ -40,6 +74,7 @@ func generate_wave():
 			enemies[enemie] = null
 			enemie.killed.connect(on_enemy_died.bind(enemie))
 			add_child(enemie)
+	next_wave += 1
 
 func find_random_coordinates_on_field():
 	var rng = RandomNumberGenerator.new()
@@ -70,8 +105,6 @@ func on_enemy_died(enemy):
 
 func on_tile_focused(tile):
 	focused_tile = tile
-	if get_towers().size() == 1:
-		generate_wave()
 	window_update.emit()
 
 func on_tile_unfocused(tile):
