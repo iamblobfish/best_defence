@@ -57,18 +57,19 @@ func wave_tick():
 
 func generate_wave():
 	get_parent().set_wave_number(next_wave)
-	var towers = get_towers()
-	if towers.size() == 0:
+	var towers_coord_to_state_map = get_towers_coord_to_state_map()
+	if towers_coord_to_state_map.size() == 0:
 		end_game()
 		return
-	for tower in towers:
-		var tower_state = towers[tower].get_state()
+
+	for tower_state in towers_coord_to_state_map.values():
 		if tower_state.tower_type == BaseTower.TowerType.MINING:
 			tower_state.tower_ref.on_wave_end()
-	var dict_of_enemies = { 1: 4 + next_wave * 2, 2: 2 + next_wave }
+
+	var dict_of_enemies = { 1: 4 + int(next_wave * 1.5), 2: 2 + next_wave }
 	var dict_of_enemies_scenes = { 1: preload("res://enemy.tscn"), 2: preload("res://enemy_small.tscn") }
 	for type in dict_of_enemies:
-		for count in dict_of_enemies[type]:
+		for count_i in dict_of_enemies[type]:
 			var enemie = dict_of_enemies_scenes[type].instantiate()
 			enemie.position = find_perfect_spawn_place()
 			enemies[enemie] = null
@@ -89,13 +90,13 @@ func is_enemy_near_tower(towers_pos, enemy_pos):
 		var delta = tower_pos - enemy_pos
 		# normalisation
 		delta.y = delta.y * tile_width / tile_height
-		if delta.length() < tile_width * 1.5:
+		if delta.length() < tile_width:
 			return true
 	return false
 
 func find_perfect_spawn_place():
 	var spawn_coord = find_random_coordinates_on_field()
-	while is_enemy_near_tower(get_towers().keys(), spawn_coord):
+	while is_enemy_near_tower(get_towers_coord_to_state_map().keys(), spawn_coord):
 		spawn_coord = find_random_coordinates_on_field()
 	return spawn_coord
 
@@ -114,12 +115,12 @@ func on_tile_unfocused(tile):
 func on_tower_update(tile):
 	window_update.emit()
 
-func get_towers():
+func get_towers_coord_to_state_map():
 	var towers = {}
 	for tile_position in tile_map:
 		var tower_state = tile_map[tile_position].get_tower_state()
 		if tower_state.is_build:
-			towers[tile_position] = tower_state.tower_ref
+			towers[tile_position] = tower_state
 	if len(towers) == 0:
 		no_towers.emit()
 	return towers

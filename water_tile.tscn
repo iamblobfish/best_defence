@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwevqrqj240o4"]
+[gd_scene load_steps=5 format=3 uid="uid://dfejoc2xuexq5"]
 
 [ext_resource type="Texture2D" uid="uid://btfyf7lsqm58n" path="res://tiles/end.png" id="1_61xpn"]
-[ext_resource type="Script" path="res://water_tile.gd" id="2_622dj"]
 [ext_resource type="Texture2D" uid="uid://6dyk0gc1bokx" path="res://tiles/end1.png" id="2_cf55y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p2m7c"]
@@ -18,8 +17,22 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_p1et4"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
 [node name="WaterTile" type="AnimatedSprite2D"]
 position = Vector2(0, 13)
 sprite_frames = SubResource("SpriteFrames_p2m7c")
 speed_scale = 2.0
-script = ExtResource("2_622dj")
+script = SubResource("GDScript_p1et4")

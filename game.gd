@@ -62,7 +62,7 @@ func _on_window_create_or_update():
 		var tower_type = window.get_child(0).get_selected_items()[0]
 		print("tower type: ", tower_type)
 		if $map.focused_tile:
-			if $map.focused_tile.create_tower(tower_type) == -1:
+			if $map.focused_tile.create_tower(tower_type+1) == -1:
 				$ok.dialog_text = "Not enough money!"
 				$ok.position.y -= 100
 				$ok.show()

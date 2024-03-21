@@ -6,7 +6,7 @@ signal tower_update
 
 var focus = false
 
-var towers = {
+var towers_scipts = {
 	0 : "res://towers_scripts/base_tower.gd",
 	1 : "res://towers_scripts/attack_base_tower.gd",
 	2 : "res://towers_scripts/mining_tower.gd"
@@ -17,47 +17,37 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_pressed():
-	#print(focus)
 	if focus:
 		release_focus()
 		tile_unfocused.emit()
 	else:
-		#print('show vindow in tile')
-		#print(focus)
 		tile_focused.emit()
-		#print(show_window.get_connections())
 	focus = not focus
 
 func _on_tower_draw():
 	set_hex(HexType.FOREST_BUILT)
-	pass # Replace with function body.
 
 func _on_tower_hidden():
 	set_hex(HexType.FOREST_WILD)
-	pass # Replace with function body.
 	
 func get_tower_state():
 	return $Tower.get_state()
-	
-	
 
 func create_tower(tower_type):
+	# TODO: why grab_focus needed?
 	grab_focus()
-	#var choise = "Attack"
-	$Tower.set_script(load(towers[tower_type+1]))
+	$Tower.set_script(load(towers_scipts[tower_type]))
 	var result = $Tower.create_or_update()
 	if (result == -1):
-		$Tower.set_script(load(towers[0]))
+		$Tower.set_script(load(towers_scipts[0]))
 		return -1
 	tower_update.emit()
-
 
 func delete_tower():
 	grab_focus()
 	$Tower.disassemble()
-	$Tower.set_script(load(towers[0]))
+	$Tower.set_script(load(towers_scipts[0]))
 	tower_update.emit()
-	
 
 func damage_tower(damage):
 	$Tower.make_damage(damage)

@@ -1,15 +1,57 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvurlfffb3rbq"]
+[gd_scene load_steps=14 format=3 uid="uid://dvc13cfqgskvx"]
 
 [ext_resource type="PackedScene" uid="uid://bluvtptda08em" path="res://tile.tscn" id="1_06fm2"]
-[ext_resource type="PackedScene" uid="uid://cwevqrqj240o4" path="res://water_tile.tscn" id="2_mhg7m"]
-[ext_resource type="Script" path="res://grid.gd" id="2_npl25"]
+[ext_resource type="Texture2D" uid="uid://btfyf7lsqm58n" path="res://tiles/end.png" id="2_fhlm1"]
+[ext_resource type="PackedScene" uid="uid://dfejoc2xuexq5" path="res://water_tile.tscn" id="2_mhg7m"]
+[ext_resource type="Texture2D" uid="uid://6dyk0gc1bokx" path="res://tiles/end1.png" id="3_0rwtj"]
 [ext_resource type="PackedScene" uid="uid://cb5qk2r15qo5y" path="res://choosing_window.tscn" id="3_ghqwk"]
 [ext_resource type="Texture2D" uid="uid://b88rn84t0yrow" path="res://tiles/cloud1.png" id="3_xnc3i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p2m7c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fhlm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0rwtj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_p1et4"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="PackedScene" id="PackedScene_ee5iu"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("WaterTile", "AnimatedSprite2D", "position", "sprite_frames", "speed_scale", "script"),
+"node_count": 1,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 4, 2, 0, 3, 1, 4, 2, 5, 3, 0),
+"variants": [Vector2(0, 13), SubResource("SpriteFrames_p2m7c"), 2.0, SubResource("GDScript_p1et4")],
+"version": 3
+}
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_tb11a"]
 resource_name = "TileSet"
 scenes/1/scene = ExtResource("1_06fm2")
-scenes/3/scene = ExtResource("2_mhg7m")
+scenes/3/scene = SubResource("PackedScene_ee5iu")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w6or3"]
 texture = ExtResource("3_xnc3i")
@@ -31,6 +73,82 @@ tile_size = Vector2i(130, 85)
 sources/2 = SubResource("TileSetScenesCollectionSource_tb11a")
 sources/5 = SubResource("TileSetAtlasSource_w6or3")
 
+[sub_resource type="GDScript" id="GDScript_fm4rt"]
+script/source = "extends TileMap
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	#print($ForestTile2.position)
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+	
+func _on_forest_tile_2_show_window():
+	#print('entered')
+	#var t = $ForestTile2/Tower.get_tower()
+	#$Window/VBoxContainer/btn3.hide()
+	#$Window/VBoxContainer/Create.hide()
+	#$Window/VBoxContainer/delete.hide()
+	#if t==-1:
+		#$Window/VBoxContainer/Create.show()
+	#else:
+		#$Window/VBoxContainer/delete.show()
+		#if $ForestTile2/Tower.updatable():
+			#$Window/VBoxContainer/btn3.show()
+	#$Window.show()
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+			var global_clicked = event.position
+			var pos_clicked = local_to_map(to_local(global_clicked))
+			#var children = get_chi
+			#print(\"data: \", data)
+			
+			#print($ForestTile2.show_window.get_connections())
+
+
+
+
+func _on_forest_tile_2_tile_focus_entered():
+	
+	#print('entered')
+	var t = $ForestTile2/Tower.get_tower()
+	$Window/VBoxContainer/btn3.hide()
+	$Window/VBoxContainer/Create.hide()
+	$Window/VBoxContainer/delete.hide()
+	if t==-1:
+		$Window/VBoxContainer/Create.show()
+	else:
+		$Window/VBoxContainer/delete.show()
+		if $ForestTile2/Tower.updatable():
+			$Window/VBoxContainer/btn3.show()
+	$Window.show()
+	#pass # Replace with function body.
+
+#
+#func _on_forest_tile_2_show_window():
+	#print('entered')
+	##var t = $ForestTile2/Tower.get_tower()
+	##$Window/VBoxContainer/btn3.hide()
+	##$Window/VBoxContainer/Create.hide()
+	##$Window/VBoxContainer/delete.hide()
+	##if t==-1:
+		##$Window/VBoxContainer/Create.show()
+	##else:
+		##$Window/VBoxContainer/delete.show()
+		##if $ForestTile2/Tower.updatable():
+			##$Window/VBoxContainer/btn3.show()
+	##$Window.show()
+
+
+func _on_forest_tile_2_pressed():
+	#print('pressed')
+
+"
+
 [node name="TileMap" type="TileMap"]
 z_as_relative = false
 y_sort_enabled = true
@@ -41,7 +159,7 @@ format = 2
 layer_0/y_sort_enabled = true
 layer_0/navigation_enabled = false
 layer_0/tile_data = PackedInt32Array(196608, 2, 65536, 393215, 2, 65536, 458751, 2, 65536, 262144, 2, 65536, 131073, 2, 65536, 196609, 2, 65536, 327680, 2, 65536, 524286, 2, 65536, 458750, 2, 65536, 327679, 2, 65536, 589821, 2, 65536, 655357, 2, 65536, 589822, 2, 65536, 720893, 2, 65536, 655358, 2, 65536, 524287, 2, 65536, 589823, 2, 65536, 393216, 2, 65536, 262145, 2, 65536, 131074, 2, 65536, 131072, 2, 65536, 262143, 2, 65536, 393214, 2, 65536, 524285, 2, 65536, 655356, 2, 65536, 720892, 2, 65536, 786427, 2, 65536, 786428, 2, 65536, 786429, 2, 65536, 720894, 2, 65536, 786430, 2, 65536, 655359, 2, 65536, 458752, 2, 65536, 327681, 2, 65536, 196610, 2, 65536, 65536, 2, 65536, 65537, 2, 65536, 65538, 2, 65536, 65539, 2, 65536)
-script = ExtResource("2_npl25")
+script = SubResource("GDScript_fm4rt")
 metadata/_edit_vertical_guides_ = [-202.0]
 
 [node name="WaterTile" parent="." instance=ExtResource("2_mhg7m")]

@@ -73,6 +73,7 @@ func disassemble():
 	current_level = 0
 	tower_type = TowerType.NOTHING
 	print(tower_type)
+	hide()
 
 func get_state():
 	var tower_state = TowerState.new()
@@ -110,13 +111,10 @@ func get_costs_list():
 	return {'Mining': towers_cost[TowerType.MINING], "Attack": towers_cost[TowerType.ATTACK_BASE]}
 	
 
-func make_damage(damage):
-	if hp - damage <= 0:
+func take_damage(damage):
+	hp -= damage
+	if hp <= 0:
 		hp = 0
 		destroy()
-	else: 
-		hp -= damage
-		$health.value = hp
-	#print(hp)
-	
+	$health.value = hp
 
