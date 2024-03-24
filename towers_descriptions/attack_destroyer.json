@@ -1,22 +1,22 @@
 {
-	"name": "Base Attack Tower",
-	"tower_type": 1,
+	"name": "Destroyer Attack Tower",
+	"tower_type": 5,
 	"level_to_upgrade_cost": {
-		"1": 10,
-		"2": 20,
-		"3": 30,
+		"1": 40,
+		"2": 40,
+		"3": 40,
 	},
 	"level_to_destroy_gain": {
-		"1": 10,
-		"2": 15,
-		"3": 25,
-		"4": 40
+		"1": 80,
+		"2": 100,
+		"3": 120,
+		"4": 140
 	},
 	"level_to_attack_power": {
-		"1": 10,
-		"2": 15,
-		"3": 20,
-		"4": 28,
+		"1": 15,
+		"2": 16,
+		"3": 17,
+		"4": 18,
 	},
 	"level_to_texture": {
 		"1": "res://tiles/castles/castle3.png",
@@ -24,7 +24,7 @@
 		"3": "res://tiles/castles/castle3.png",
 		"4": "res://tiles/castles/castle3.png",
 	},
-	"cost": 20,
-	"succsessors": [4, 5],
+	"cost": 80,
+	"succsessors": [],
 	"maximum_level": 4
 }

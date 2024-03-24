@@ -15,31 +15,25 @@ func _process(delta):
 @onready var window = $Window/margin/vbox
 
 var TowerType = TowerDescriptions.TowerType
+var options_tower_type_list
 # signals sent from map to window
 func window_update():
-	#print('focused tile: ', $map.focused_tile)
-	var tower_state =  $map.focused_tile.get_tower_state()
+	var tower_state = $map.focused_tile.get_tower_state()
 	for i in window.get_children():
 		i.hide()
-	if not tower_state.is_build:
+	if tower_state.is_selection_available:
 		window.get_child(1).show()
 		window.get_child(0).clear()
+		options_tower_type_list = []
 		for successor_info in tower_state.successors_info:
 			var img = Image.load_from_file(successor_info.image)
 			img.resize(120, 120)
+			options_tower_type_list.append(successor_info.tower_type)
 			$Window.add_item(
 				"Cost: "+str(successor_info.cost), 
 				ImageTexture.create_from_image(img)
 			)
-		#for type in range(len(TowerType)):
-			#if type == TowerType.NOTHING:
-				#continue
-			#var img = Image.load_from_file(TowerDescriptions.towers_create_images[type])
-			#img.resize(120, 120)
-			#$Window.add_item(
-				#"Cost: "+str(TowerDescriptions.towers_create_costs[type]), 
-				#ImageTexture.create_from_image(img)
-			#)
+		
 		$Window.show_items()
 	else:
 		window.get_child(2).show()
@@ -47,15 +41,6 @@ func window_update():
 			window.get_child(3).show()
 	$Window.show()
 	print($Camera2D.zoom, $Camera2D.offset)
-	#print(window.get_child(2).text)
-	#window.get_child(4).pressed.connect(on_add_butt_click)
-	#window.get_child(4).text = "Damage"
-	#window.get_child(4).show()
-
-func on_add_butt_click():
-	if $map.focused_tile:
-		$map.focused_tile.damage_tower(10)
-	pass
 
 
 func _on_map_window_hide():
@@ -71,10 +56,9 @@ func _on_window_create_or_update():
 		$ok.position.y -= 100
 		$ok.show()
 	else:
-		var tower_type = window.get_child(0).get_selected_items()[0]
-		print("tower type: ", tower_type)
+		var choise_index = window.get_child(0).get_selected_items()[0]
 		if $map.focused_tile:
-			if $map.focused_tile.create_tower(tower_type+1) == -1:
+			if $map.focused_tile.create_tower(options_tower_type_list[choise_index]) == -1:
 				$ok.dialog_text = "Not enough money!"
 				$ok.position.y -= 100
 				$ok.show()
@@ -84,6 +68,11 @@ func _on_window_delete():
 	if $map.focused_tile:
 		$map.focused_tile.delete_tower()
 	window_update() 
+
+func _on_window_upgrade():
+	if $map.focused_tile:
+		$map.focused_tile.upgrade_tower()
+	window_update()
 
 func _on_camera_2d_move():
 	#print('move')

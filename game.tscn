@@ -124,9 +124,9 @@ theme_override_fonts/font = ExtResource("6_d1qff")
 theme_override_font_sizes/font_size = 25
 text = "Current wave"
 
-[connection signal="btn3" from="Window" to="." method="_on_window_create_or_update"]
 [connection signal="create" from="Window" to="." method="_on_window_create_or_update"]
 [connection signal="delete" from="Window" to="." method="_on_window_delete"]
+[connection signal="upgrade" from="Window" to="." method="_on_window_upgrade"]
 [connection signal="move" from="Camera2D" to="." method="_on_camera_2d_move"]
 [connection signal="no_towers" from="map" to="." method="_on_map_no_towers"]
 [connection signal="window_hide" from="map" to="." method="_on_map_window_hide"]

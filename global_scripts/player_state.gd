@@ -1,5 +1,5 @@
 extends Node
-var currency: int = 100
+var currency: int = 1000
 var game_history = {}
 signal out_of_money
 

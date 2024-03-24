@@ -1,5 +1,5 @@
 extends Panel
-signal btn3
+signal upgrade
 signal create
 signal delete
 #TODO: make it be screen size always
@@ -39,7 +39,6 @@ func hide_items():
 
 func _on_delete_pressed():
 	delete.emit()
-	
 
 func _on_forest_tile_2_show_window():
 	#print('show vindow in window')
@@ -48,6 +47,5 @@ func _on_forest_tile_2_show_window():
 func _on_forest_tile_focus_exited():
 	hide()
 
-func _on_btn_3_pressed():
-	btn3.emit()
-	pass 
+func _on_upgrade_pressed():
+	upgrade.emit()

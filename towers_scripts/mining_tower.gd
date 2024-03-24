@@ -14,7 +14,6 @@ func _init():
 func init():
 	hp = 50
 	max_hp = 50
-	current_level = 0
 
 func on_wave_end():
 	# TODO: UI effect for + money

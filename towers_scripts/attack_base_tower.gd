@@ -1,28 +1,33 @@
-extends BaseTower
+class_name BaseAttackTower extends BaseTower
 
 var fireball_scene = preload("res://fireball.tscn")
 var timer: Timer
 
-func _init():
-	tower_type = TowerDescriptions.TowerType.ATTACK_BASE
-	super._init()
+var level_to_attack_power
 
-var level_to_attack_power = {
-	1: 10,
-	2: 15,
-	3: 20
-}
+func _init():
+	assign_type()
+	super._init()
+	level_to_attack_power = TowerDescriptions.string_keys_to_int_keys(
+		tower_description["level_to_attack_power"]
+	)
+
+func assign_type():
+	tower_type = TowerDescriptions.TowerType.ATTACK_BASE
 
 func init():
 	hp = 150
 	max_hp = 150
-	current_level = 0
 	
 	timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = 1.0
 	timer.connect("timeout", find_enemy_and_fire)
 	timer.start()
+
+func upgrade():
+	hp += 50
+	max_hp += 50
 
 func find_closest_enemy(enemies):
 	var closest_distance = 10000

@@ -56,6 +56,7 @@ func wave_tick():
 	get_parent().set_wave_timeout(time_to_wave)
 
 func generate_wave():
+	print("Generate wave")
 	get_parent().set_wave_number(next_wave)
 	var towers_coord_to_state_map = get_towers_coord_to_state_map()
 	if towers_coord_to_state_map.size() == 0:
@@ -66,6 +67,7 @@ func generate_wave():
 		if tower_state.tower_type == TowerDescriptions.TowerType.MINING:
 			tower_state.tower_ref.on_wave_end()
 
+	print("Generate enemies!")
 	var dict_of_enemies = { 1: 4 + int(next_wave * 1.1), 2: 2 + int(next_wave * 0.6) }
 	var dict_of_enemies_scenes = { 1: preload("res://enemy.tscn"), 2: preload("res://enemy_small.tscn") }
 	for type in dict_of_enemies:
@@ -119,7 +121,7 @@ func get_towers_coord_to_state_map():
 	var towers = {}
 	for tile_position in tile_map:
 		var tower_state = tile_map[tile_position].get_tower_state()
-		if tower_state.is_build:
+		if tower_state.tower_type != TowerDescriptions.TowerType.NOTHING:
 			towers[tile_position] = tower_state
 	if len(towers) == 0:
 		no_towers.emit()

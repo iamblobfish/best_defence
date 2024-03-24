@@ -16,9 +16,11 @@ var level_to_upgrade_cost: Dictionary
 var level_to_texture: Dictionary
 var successors: Array
 
+var tower_description
+
 func _init():
 	texture = null
-	var tower_description = TowerDescriptions.get_description(tower_type)
+	tower_description = TowerDescriptions.get_description(tower_type)
 	level_to_destroy_gain = TowerDescriptions.string_keys_to_int_keys(
 		tower_description["level_to_destroy_gain"]
 	)
@@ -34,11 +36,15 @@ func _init():
 	pass
 	# TODO: tile specifications
 
-func create_or_update():
+func create_or_upgrade():
+	print(current_level)
+	print(tower_type)
 	if current_level >= maximum_level:
-		return
+		return -2
 	
-	if current_level == 0:
+	current_level += 1
+	
+	if current_level == 1:
 		if not PlayerState.reduce_currency(tower_cost):
 			current_level -= 1
 			return -1
@@ -47,8 +53,8 @@ func create_or_update():
 		if not PlayerState.reduce_currency(level_to_upgrade_cost[current_level-1]):
 			current_level -= 1
 			return -1
-	
-	current_level += 1
+		upgrade()
+	print(current_level)
 	texture = ImageTexture.create_from_image(
 		Image.load_from_file(level_to_texture[current_level])
 	)
@@ -61,6 +67,9 @@ func create_or_update():
 		$health.show()
 
 func init():
+	return
+
+func upgrade():
 	return
 
 func destroy():
@@ -77,9 +86,10 @@ func disassemble():
 
 func get_state():
 	var tower_state = TowerDescriptions.TowerState.new()
-	tower_state.is_build = (tower_type != TowerDescriptions.TowerType.NOTHING)
+	tower_state.is_selection_available = tower_type == TowerDescriptions.TowerType.NOTHING \
+		or (current_level == maximum_level and successors.size() > 0)
 	tower_state.successors_info = get_successors_info()
-	if not tower_state.is_build:
+	if tower_type == TowerDescriptions.TowerType.NOTHING:
 		return tower_state
 	tower_state.tower_type = tower_type
 	tower_state.is_damaged = hp < max_hp
@@ -97,7 +107,7 @@ func get_state():
 func get_successors_info():
 	var successors_array = []
 	for successor_tower_type in successors:
-		successors_array.append(TowerDescriptions.get_successor_info(successor_tower_type))
+		successors_array.append(TowerDescriptions.get_successor_info(int(successor_tower_type)))
 	return successors_array
 
 func take_damage(damage):
