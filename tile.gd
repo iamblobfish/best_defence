@@ -9,7 +9,8 @@ var focus = false
 var towers_scipts = {
 	0 : "res://towers_scripts/base_tower.gd",
 	1 : "res://towers_scripts/attack_base_tower.gd",
-	2 : "res://towers_scripts/mining_tower.gd"
+	2 : "res://towers_scripts/mining_tower.gd",
+	3 : "res://towers_scripts/wall.gd"
 }
 
 func _ready():
@@ -37,17 +38,20 @@ func create_tower(tower_type):
 	# TODO: why grab_focus needed?
 	grab_focus()
 	$Tower.set_script(load(towers_scipts[tower_type]))
+	$Tower.on_tower_destroyed.connect(on_tower_destroyed)
 	var result = $Tower.create_or_update()
 	if (result == -1):
 		$Tower.set_script(load(towers_scipts[0]))
 		return -1
 	tower_update.emit()
 
+func on_tower_destroyed():
+	$Tower.set_script(load(towers_scipts[0]))
+	tower_update.emit()
+
 func delete_tower():
 	grab_focus()
 	$Tower.disassemble()
-	$Tower.set_script(load(towers_scipts[0]))
-	tower_update.emit()
 
 func damage_tower(damage):
 	$Tower.make_damage(damage)

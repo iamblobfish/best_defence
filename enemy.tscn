@@ -38,5 +38,6 @@ offset_left = -48.0
 offset_top = -72.0
 offset_right = 41.0
 offset_bottom = -45.0
+mouse_filter = 2
 theme_override_fonts/font = ExtResource("4_4njud")
 theme_override_styles/background = ExtResource("5_mblup")

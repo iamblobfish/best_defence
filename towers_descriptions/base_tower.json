@@ -1,0 +1,10 @@
+{
+	"name": "Base Tower",
+	"tower_type": 0,
+	"level_to_upgrade_cost": {},
+	"level_to_destroy_gain": {},
+	"level_to_texture": {},
+	"cost": 0,
+	"succsessors": [1, 2, 3],
+	"maximum_level": 0
+}

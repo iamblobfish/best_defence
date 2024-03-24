@@ -1,0 +1,15 @@
+{
+	"name": "Mining tower",
+	"tower_type": 2,
+	"level_to_upgrade_cost": {},
+	"level_to_destroy_gain": {
+		"1": 15
+	},
+	"level_to_texture": {
+		"1": "res://tiles/castles/castle1.png",
+		"2": "res://tiles/castles/castle2.png"
+	},
+	"cost": 30,
+	"succsessors": [],
+	"maximum_level": 1
+}

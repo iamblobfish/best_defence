@@ -24,10 +24,22 @@ func window_update():
 	if not tower_state.is_build:
 		window.get_child(1).show()
 		window.get_child(0).clear()
-		for type in range(len(TowerType)):
-			var img = Image.load_from_file(TowerDescriptions.towers_create_images[type])
+		for successor_info in tower_state.successors_info:
+			var img = Image.load_from_file(successor_info.image)
 			img.resize(120, 120)
-			$Window.add_item("Cost: "+str(TowerDescriptions.towers_create_costs[type]), ImageTexture.create_from_image(img))
+			$Window.add_item(
+				"Cost: "+str(successor_info.cost), 
+				ImageTexture.create_from_image(img)
+			)
+		#for type in range(len(TowerType)):
+			#if type == TowerType.NOTHING:
+				#continue
+			#var img = Image.load_from_file(TowerDescriptions.towers_create_images[type])
+			#img.resize(120, 120)
+			#$Window.add_item(
+				#"Cost: "+str(TowerDescriptions.towers_create_costs[type]), 
+				#ImageTexture.create_from_image(img)
+			#)
 		$Window.show_items()
 	else:
 		window.get_child(2).show()

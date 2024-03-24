@@ -1,0 +1,14 @@
+{
+	"name": "Wall",
+	"tower_type": 3,
+	"level_to_upgrade_cost": {},
+	"level_to_destroy_gain": {
+		"1": 10
+	},
+	"level_to_texture": {
+		"1": "res://tiles/castles/mountain.png"
+	},
+	"cost": 20,
+	"succsessors": [],
+	"maximum_level": 1
+}

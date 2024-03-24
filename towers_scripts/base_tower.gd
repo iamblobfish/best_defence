@@ -8,46 +8,49 @@ var max_hp: int = 0
 var hp: int = 0
 var current_level: int = 0
 var maximum_level: int = 0
-var tower_type: TowerType = TowerType.NOTHING
+var tower_type: TowerDescriptions.TowerType = TowerDescriptions.TowerType.NOTHING
+var tower_cost: int = 0
 
 var level_to_destroy_gain: Dictionary
 var level_to_upgrade_cost: Dictionary
-var level_to_texture_dict: Dictionary
-
-enum TowerType {
-	NOTHING,
-	MINING,
-	ATTACK_BASE
-}
-
-var towers_cost = {
-	TowerType.NOTHING: 0,
-	TowerType.MINING: 30,
-	TowerType.ATTACK_BASE: 20
-}
+var level_to_texture: Dictionary
+var successors: Array
 
 func _init():
 	texture = null
+	var tower_description = TowerDescriptions.get_description(tower_type)
+	level_to_destroy_gain = TowerDescriptions.string_keys_to_int_keys(
+		tower_description["level_to_destroy_gain"]
+	)
+	level_to_upgrade_cost = TowerDescriptions.string_keys_to_int_keys(
+		tower_description["level_to_upgrade_cost"]
+	)
+	level_to_texture = TowerDescriptions.string_keys_to_int_keys(
+		tower_description["level_to_texture"]
+	)
+	maximum_level = tower_description["maximum_level"]
+	tower_cost = int(tower_description["cost"])
+	successors = tower_description["succsessors"]
 	pass
 	# TODO: tile specifications
 
 func create_or_update():
-	init()
 	if current_level >= maximum_level:
 		return
-	current_level += 1
 	
-	if current_level == 1:
-		if not PlayerState.reduce_currency(towers_cost[tower_type]):
+	if current_level == 0:
+		if not PlayerState.reduce_currency(tower_cost):
 			current_level -= 1
 			return -1
+		init()
 	else:
 		if not PlayerState.reduce_currency(level_to_upgrade_cost[current_level-1]):
 			current_level -= 1
 			return -1
 	
+	current_level += 1
 	texture = ImageTexture.create_from_image(
-		Image.load_from_file(level_to_texture_dict[current_level])
+		Image.load_from_file(level_to_texture[current_level])
 	)
 	# progress bar part
 	$health.max_value = max_hp
@@ -63,58 +66,45 @@ func init():
 func destroy():
 	texture = null
 	current_level = 0
-	tower_type = TowerType.NOTHING
-	print(tower_type)
+	current_level = 0
+	tower_type = TowerDescriptions.TowerType.NOTHING
 	hide()
-	
+	on_tower_destroyed.emit()
+
 func disassemble():
 	PlayerState.add_currency(level_to_destroy_gain[current_level])
-	texture = null
-	current_level = 0
-	tower_type = TowerType.NOTHING
-	print(tower_type)
-	hide()
+	destroy()
 
 func get_state():
-	var tower_state = TowerState.new()
-	tower_state.is_build = (tower_type != TowerType.NOTHING)
+	var tower_state = TowerDescriptions.TowerState.new()
+	tower_state.is_build = (tower_type != TowerDescriptions.TowerType.NOTHING)
+	tower_state.successors_info = get_successors_info()
 	if not tower_state.is_build:
 		return tower_state
 	tower_state.tower_type = tower_type
 	tower_state.is_damaged = hp < max_hp
 	tower_state.is_upgradable = current_level < maximum_level
-	var repair_cost = towers_cost[tower_type]
-	for i in range(1, current_level+1):
-		repair_cost += level_to_upgrade_cost[i]
-	tower_state.repair_cost = repair_cost * (max_hp - hp) / max_hp
+	#var repair_cost = towers_cost[tower_type]
+	#for i in range(1, current_level):
+		#repair_cost += level_to_upgrade_cost[i]
+	#tower_state.repair_cost = repair_cost * (max_hp - hp) / max_hp
 	tower_state.destroy_gain = level_to_destroy_gain[current_level]
-	tower_state.upgrade_cost = level_to_upgrade_cost[current_level]
+	if current_level < maximum_level:
+		tower_state.upgrade_cost = level_to_upgrade_cost[current_level]
 	tower_state.tower_ref = self
 	return tower_state
-  
 
-class TowerState:
-	var is_build: bool
-	var tower_type: TowerType
-	var is_upgradable: bool
-	var upgrade_cost: int
-	var is_damaged: bool
-	var repair_cost: int
-	var destroy_gain: int
-	var tower_ref: Node
-	
-	func _to_string():
-		print("is_build: ", is_build, "\ntower_type: ", tower_type, "\nis_upgradable: ", is_upgradable, "\nupgrade_cost: ", upgrade_cost,  "\nis_damaged: ", is_damaged, "\nrepair_cost: ", repair_cost, "\ndestroy_gain: ", destroy_gain)
-	
-
-func get_costs_list():
-	return {'Mining': towers_cost[TowerType.MINING], "Attack": towers_cost[TowerType.ATTACK_BASE]}
-	
+func get_successors_info():
+	var successors_array = []
+	for successor_tower_type in successors:
+		successors_array.append(TowerDescriptions.get_successor_info(successor_tower_type))
+	return successors_array
 
 func take_damage(damage):
 	hp -= damage
 	if hp <= 0:
 		hp = 0
 		destroy()
+		return
 	$health.value = hp
 

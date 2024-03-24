@@ -1,0 +1,21 @@
+{
+	"name": "Base Attack Tower",
+	"tower_type": 1,
+	"level_to_upgrade_cost": {
+		"1": 10,
+		"2": 20,
+		"3": 30,
+	},
+	"level_to_destroy_gain": {
+		"1": 10,
+		"2": 15,
+		"3": 25,
+		"4": 40
+	},
+	"level_to_texture": {
+		"1": "res://tiles/castles/castle3.png"
+	},
+	"cost": 20,
+	"succsessors": [],
+	"maximum_level": 4
+}

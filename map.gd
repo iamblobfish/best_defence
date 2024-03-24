@@ -9,8 +9,8 @@ var enemies = {}
 # var towers = {}
 var tile_width = 128
 var tile_height = 66
-var tiles_in_column = 5
-var tiles_in_row = 8
+var tiles_in_column = 7
+var tiles_in_row = 9
 
 var wave_timer
 var time_to_wave = 19
@@ -63,10 +63,10 @@ func generate_wave():
 		return
 
 	for tower_state in towers_coord_to_state_map.values():
-		if tower_state.tower_type == BaseTower.TowerType.MINING:
+		if tower_state.tower_type == TowerDescriptions.TowerType.MINING:
 			tower_state.tower_ref.on_wave_end()
 
-	var dict_of_enemies = { 1: 4 + int(next_wave * 1.5), 2: 2 + next_wave }
+	var dict_of_enemies = { 1: 4 + int(next_wave * 1.1), 2: 2 + int(next_wave * 0.6) }
 	var dict_of_enemies_scenes = { 1: preload("res://enemy.tscn"), 2: preload("res://enemy_small.tscn") }
 	for type in dict_of_enemies:
 		for count_i in dict_of_enemies[type]:
