@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://6gdleu73nefl"]
 
 [ext_resource type="Script" path="res://towers_scripts/base_tower.gd" id="1_ed73e"]
-[ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://rounded_button.tres" id="2_4uwru"]
 [ext_resource type="FontFile" uid="uid://caqe4g6rm72gy" path="res://arcadeclassic/ARCADECLASSIC.TTF" id="2_70th0"]
+[ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://themes/rounded_button.tres" id="3_3aqt4"]
 
 [node name="Tower" type="Sprite2D"]
 visible = false
@@ -15,4 +15,4 @@ offset_top = -70.0
 offset_right = 33.0
 offset_bottom = -43.0
 theme_override_fonts/font = ExtResource("2_70th0")
-theme_override_styles/background = ExtResource("2_4uwru")
+theme_override_styles/background = ExtResource("3_3aqt4")

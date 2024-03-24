@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://enemies_scripts/small_enemie.gd" id="2_2oxiy"]
 [ext_resource type="Texture2D" uid="uid://d1jpmeudw822q" path="res://tiles/small_enemy2.png" id="2_o626v"]
 [ext_resource type="FontFile" uid="uid://caqe4g6rm72gy" path="res://arcadeclassic/ARCADECLASSIC.TTF" id="4_jxhev"]
-[ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://rounded_button.tres" id="5_er1so"]
+[ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://themes/rounded_button.tres" id="5_8ljfe"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v5wne"]
 animations = [{
@@ -39,4 +39,4 @@ offset_top = -72.0
 offset_right = 41.0
 offset_bottom = -45.0
 theme_override_fonts/font = ExtResource("4_jxhev")
-theme_override_styles/background = ExtResource("5_er1so")
+theme_override_styles/background = ExtResource("5_8ljfe")

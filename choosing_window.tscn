@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://choosing_window.gd" id="1_yqdw2"]
 [ext_resource type="FontFile" uid="uid://caqe4g6rm72gy" path="res://arcadeclassic/ARCADECLASSIC.TTF" id="2_f33rw"]
-[ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://rounded_button.tres" id="3_ljgrv"]
-[ext_resource type="StyleBox" uid="uid://jgxiw7ed4psi" path="res://rounded_button_hover.tres" id="4_htqnm"]
+[ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://themes/rounded_button.tres" id="3_wbuoi"]
+[ext_resource type="StyleBox" uid="uid://jgxiw7ed4psi" path="res://themes/rounded_button_hover.tres" id="4_5uk4t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfrgr"]
 bg_color = Color(0.0823529, 0.729412, 1, 1)
@@ -56,18 +56,18 @@ icon_mode = 0
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_f33rw")
-theme_override_styles/normal = ExtResource("3_ljgrv")
-theme_override_styles/hover = ExtResource("4_htqnm")
-theme_override_styles/pressed = ExtResource("3_ljgrv")
+theme_override_styles/normal = ExtResource("3_wbuoi")
+theme_override_styles/hover = ExtResource("4_5uk4t")
+theme_override_styles/pressed = ExtResource("3_wbuoi")
 text = "Create"
 
 [node name="delete" type="Button" parent="margin/vbox"]
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_f33rw")
-theme_override_styles/normal = ExtResource("3_ljgrv")
-theme_override_styles/hover = ExtResource("4_htqnm")
-theme_override_styles/pressed = ExtResource("3_ljgrv")
+theme_override_styles/normal = ExtResource("3_wbuoi")
+theme_override_styles/hover = ExtResource("4_5uk4t")
+theme_override_styles/pressed = ExtResource("3_wbuoi")
 text = "Delete"
 text_overrun_behavior = 3
 icon_alignment = 1
@@ -76,18 +76,18 @@ icon_alignment = 1
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_f33rw")
-theme_override_styles/normal = ExtResource("3_ljgrv")
-theme_override_styles/hover = ExtResource("4_htqnm")
-theme_override_styles/pressed = ExtResource("3_ljgrv")
+theme_override_styles/normal = ExtResource("3_wbuoi")
+theme_override_styles/hover = ExtResource("4_5uk4t")
+theme_override_styles/pressed = ExtResource("3_wbuoi")
 text = "Update"
 
 [node name="btn4" type="Button" parent="margin/vbox"]
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_f33rw")
-theme_override_styles/normal = ExtResource("3_ljgrv")
-theme_override_styles/hover = ExtResource("4_htqnm")
-theme_override_styles/pressed = ExtResource("3_ljgrv")
+theme_override_styles/normal = ExtResource("3_wbuoi")
+theme_override_styles/hover = ExtResource("4_5uk4t")
+theme_override_styles/pressed = ExtResource("3_wbuoi")
 text = "Update"
 
 [connection signal="pressed" from="margin/vbox/Create" to="." method="_on_create_pressed"]

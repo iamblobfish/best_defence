@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Home.gd" id="1_lnkok"]
 [ext_resource type="Texture2D" uid="uid://dsygxycioyn5v" path="res://tiles/sky.png" id="2_1wdl1"]
 [ext_resource type="FontFile" uid="uid://caqe4g6rm72gy" path="res://arcadeclassic/ARCADECLASSIC.TTF" id="3_j5pdx"]
-[ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://rounded_button.tres" id="4_5mmgj"]
-[ext_resource type="StyleBox" uid="uid://jgxiw7ed4psi" path="res://rounded_button_hover.tres" id="5_5n2tm"]
+[ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://themes/rounded_button.tres" id="4_5mmgj"]
+[ext_resource type="StyleBox" uid="uid://jgxiw7ed4psi" path="res://themes/rounded_button_hover.tres" id="5_5n2tm"]
 
 [node name="Home" type="Control"]
 layout_mode = 3
