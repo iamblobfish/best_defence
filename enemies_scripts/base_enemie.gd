@@ -12,6 +12,9 @@ var gain: int = 0
 
 var attack_timer: Timer
 
+var wall_obstacles_state = null
+var path = null
+
 func _init():
 	pass
 	
@@ -29,6 +32,41 @@ func setup_attack_timer():
 	attack_timer.connect("timeout", hit_tower)
 	attack_timer.start()
 
+func movement_with_obstacles(delta):
+	var towers_coord_to_state_map = get_parent().get_towers_coord_to_state_map()
+	
+	if TileGraphWithObstacles.state != wall_obstacles_state:
+		wall_obstacles_state = TileGraphWithObstacles.state
+		path = TileGraphWithObstacles.get_path_to_closest_tower(
+			towers_coord_to_state_map,
+			position
+		)
+	
+	if path.size() == 0:
+		regular_movement(delta)
+		return
+	
+	var next_point = path[-1]
+	var path_vector = (next_point - position)
+	
+	if (path_vector.length() <= 30 and path.size() <= 1):
+		animation = "stay"
+		return
+	else:
+		animation = "walk"
+		flip_h = path_vector.x < 0
+	var delta_pos = path_vector.normalized() * speed * delta
+	if path_vector.length() - 30 < delta_pos.length() and path.size() <= 1:
+		delta_pos = path_vector - path_vector.normalized() * 30
+		position = position + delta_pos
+		return
+	if path_vector.length() < delta_pos.length():
+		path.pop_back()
+		movement_with_obstacles(delta)
+		return
+	position = position + delta_pos
+	
+
 func find_closest_tower():
 	var towers_coord_to_state_map = get_parent().get_towers_coord_to_state_map()
 	var closest_distance = 100000
@@ -42,7 +80,7 @@ func find_closest_tower():
 			closest_tower = tower
 	return closest_tower
 
-func _process(delta):
+func regular_movement(delta):
 	var tower = find_closest_tower()
 	if tower == null:
 		animation = "stay"
@@ -59,6 +97,9 @@ func _process(delta):
 	if path_vector.length() - damage_distance < delta_pos.length():
 		delta_pos = path_vector - path_vector.normalized() * damage_distance
 	position = position + delta_pos
+
+func _process(delta):
+	movement_with_obstacles(delta)
 
 func hit_tower():
 	var tower = find_closest_tower()

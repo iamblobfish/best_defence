@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PlayerState="*res://global_scripts/player_state.gd"
 TowerDescriptions="*res://global_scripts/tower_descriptions.gd"
+TileGraphWithObstacles="*res://global_scripts/tile_graph_with_obstacles.gd"
 
 [display]
 

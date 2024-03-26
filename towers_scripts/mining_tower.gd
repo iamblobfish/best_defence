@@ -12,6 +12,7 @@ func _init():
 	super._init()
 
 func init():
+	super.init()
 	hp = 50
 	max_hp = 50
 

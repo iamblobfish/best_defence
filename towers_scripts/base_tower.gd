@@ -37,8 +37,6 @@ func _init():
 	# TODO: tile specifications
 
 func create_or_upgrade():
-	print(current_level)
-	print(tower_type)
 	if current_level >= maximum_level:
 		return -2
 	
@@ -54,7 +52,6 @@ func create_or_upgrade():
 			current_level -= 1
 			return -1
 		upgrade()
-	print(current_level)
 	texture = ImageTexture.create_from_image(
 		Image.load_from_file(level_to_texture[current_level])
 	)
@@ -67,12 +64,14 @@ func create_or_upgrade():
 		$health.show()
 
 func init():
+	TileGraphWithObstacles.state += 1
 	return
 
 func upgrade():
 	return
 
 func destroy():
+	TileGraphWithObstacles.state += 1
 	texture = null
 	current_level = 0
 	current_level = 0

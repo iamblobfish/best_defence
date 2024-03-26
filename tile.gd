@@ -8,6 +8,9 @@ var focus = false
 
 var towers_scipts = TowerDescriptions.tower_type_to_script_location
 
+func pos_adj():
+	return position
+
 func _ready():
 	set_hex(HexType.FOREST_WILD)
 	pass # Replace with function body.

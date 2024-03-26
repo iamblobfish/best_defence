@@ -33,6 +33,8 @@ func _ready():
 			tile.tower_update.connect(on_tower_update.bind(tile))
 			add_child(tile)
 	start_game()
+	TileGraphWithObstacles.init(tile_map, tile_width, tile_height)
+
 
 func start_game():
 	wave_timer = Timer.new()

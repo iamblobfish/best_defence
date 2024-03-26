@@ -16,6 +16,7 @@ func assign_type():
 	tower_type = TowerDescriptions.TowerType.ATTACK_BASE
 
 func init():
+	super.init()
 	hp = 150
 	max_hp = 150
 	

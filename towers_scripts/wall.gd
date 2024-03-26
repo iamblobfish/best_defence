@@ -5,5 +5,11 @@ func _init():
 	super._init()
 
 func init():
-	hp = 1000
-	max_hp = 1000
+	super.init()
+	hp = 200
+	max_hp = 200
+	TileGraphWithObstacles.add_wall_obstacle(get_parent().position)
+
+func destroy():
+	TileGraphWithObstacles.remove_wall_obstacle(get_parent().position)
+	super.destroy()
