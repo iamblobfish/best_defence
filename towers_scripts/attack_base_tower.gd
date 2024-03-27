@@ -6,6 +6,7 @@ var timer: Timer
 var level_to_attack_power
 
 func _init():
+	position.y -= 50
 	assign_type()
 	super._init()
 	level_to_attack_power = TowerDescriptions.string_keys_to_int_keys(
@@ -19,7 +20,6 @@ func init():
 	super.init()
 	hp = 150
 	max_hp = 150
-	
 	timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = 1.0
@@ -54,6 +54,7 @@ func find_enemy_and_fire():
 	get_parent().get_parent().add_child(fireball)
 
 func destroy():
+	position.y += 50
 	remove_child(timer)
 	super.destroy()
 	

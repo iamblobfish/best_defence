@@ -52,12 +52,17 @@ func create_or_upgrade():
 			current_level -= 1
 			return -1
 		upgrade()
+	var diff = 1000
+	if current_level != 1:
+		diff = texture.get_height()
 	texture = ImageTexture.create_from_image(
 		Image.load_from_file(level_to_texture[current_level])
 	)
+	diff = max(0, texture.get_height() - diff)
+	position.y -= diff/2
 	
 	# progress bar part
-	$health.position.y = -100
+	$health.position.y -= diff/3
 	$health.max_value = max_hp
 	$health.value = hp
 	# ------

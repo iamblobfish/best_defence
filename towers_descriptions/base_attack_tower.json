@@ -20,9 +20,9 @@
 	},
 	"level_to_texture": {
 		"1": "res://tiles/castles/castle3.png",
-		"2": "res://tiles/castles/castle3.png",
-		"3": "res://tiles/castles/castle3.png",
-		"4": "res://tiles/castles/castle3.png",
+		"2": "res://tiles/castles/castle31.png",
+		"3": "res://tiles/castles/castle222.png",
+		"4": "res://tiles/castles/castle34.png",
 	},
 	"cost": 20,
 	"succsessors": [4, 5],
