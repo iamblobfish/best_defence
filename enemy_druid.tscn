@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtkdyyd6urivb"]
+
+[ext_resource type="Texture2D" uid="uid://hes40ulkllqk" path="res://tiles/enemies/druid_staying.png" id="1_f4008"]
+[ext_resource type="Texture2D" uid="uid://g4oht4nlcs81" path="res://tiles/enemies/druid.png" id="2_r3w1l"]
+[ext_resource type="Texture2D" uid="uid://c2gwlb1y2l0aq" path="res://tiles/enemies/druid2.png" id="3_0ydun"]
+[ext_resource type="FontFile" uid="uid://caqe4g6rm72gy" path="res://arcadeclassic/ARCADECLASSIC.TTF" id="4_mfx6o"]
+[ext_resource type="Script" path="res://enemies_scripts/druid_enemie.gd" id="4_phakh"]
+[ext_resource type="StyleBox" uid="uid://cie467eywd6r6" path="res://themes/rounded_button.tres" id="5_7xvjg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v5wne"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f4008")
+}],
+"loop": true,
+"name": &"stay",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r3w1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0ydun")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[node name="Enemy" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_v5wne")
+animation = &"stay"
+script = ExtResource("4_phakh")
+
+[node name="health" type="ProgressBar" parent="."]
+offset_left = -48.0
+offset_top = -72.0
+offset_right = 41.0
+offset_bottom = -45.0
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("4_mfx6o")
+theme_override_styles/background = ExtResource("5_7xvjg")

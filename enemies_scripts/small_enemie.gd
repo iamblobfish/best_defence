@@ -5,5 +5,5 @@ func _init():
 	damage = 5
 	speed = 30
 	damage_speed = 1
-	damage_distance = 50
+	damage_distance = 70
 	gain = 4

@@ -6,7 +6,7 @@
 		"1": 10
 	},
 	"level_to_texture": {
-		"1": "res://tiles/castles/mountain.png"
+		"1": "res://tiles/castles/mountain_broun.png"
 	},
 	"cost": 20,
 	"succsessors": [],

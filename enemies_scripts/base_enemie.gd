@@ -9,6 +9,8 @@ var damage_speed: int = 0
 var damage_distance: int = 0
 var speed: int = 0
 var gain: int = 0
+var self_scale:float = 1
+
 
 var attack_timer: Timer
 
@@ -19,11 +21,13 @@ func _init():
 	pass
 	
 func _ready():
+	scale = Vector2(0.7, 0.7)*self_scale
 	setup_attack_timer()
 	$health.max_value = hp
 	$health.value = hp
 	top_level = true
 	play()
+	
 
 func setup_attack_timer():
 	attack_timer = Timer.new()

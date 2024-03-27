@@ -70,8 +70,8 @@ func generate_wave():
 			tower_state.tower_ref.on_wave_end()
 
 	print("Generate enemies!")
-	var dict_of_enemies = { 1: 4 + int(next_wave * 1.1), 2: 2 + int(next_wave * 0.6) }
-	var dict_of_enemies_scenes = { 1: preload("res://enemy.tscn"), 2: preload("res://enemy_small.tscn") }
+	var dict_of_enemies = { 1: 3 + int(next_wave * 1.1), 2: 1 + int(next_wave * 0.6), 3: 2 + int(next_wave * 0.8) }
+	var dict_of_enemies_scenes = { 1: preload("res://enemy.tscn"), 2: preload("res://enemy_small.tscn"),  3: preload("res://enemy_druid.tscn")}
 	for type in dict_of_enemies:
 		for count_i in dict_of_enemies[type]:
 			var enemie = dict_of_enemies_scenes[type].instantiate()

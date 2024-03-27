@@ -55,7 +55,9 @@ func create_or_upgrade():
 	texture = ImageTexture.create_from_image(
 		Image.load_from_file(level_to_texture[current_level])
 	)
+	
 	# progress bar part
+	$health.position.y = -100
 	$health.max_value = max_hp
 	$health.value = hp
 	# ------

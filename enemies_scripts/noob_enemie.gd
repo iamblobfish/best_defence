@@ -1,9 +1,9 @@
-class_name NoobEnemie extends BaseEnemie
+extends BaseEnemie
 
 func _init():
-	hp = 100
-	damage = 10
-	speed = 10
+	hp = 80
+	damage = 15
+	speed = 13
 	damage_speed = 1
-	damage_distance = 60
-	gain = 3
+	damage_distance = 75
+	gain = 5

@@ -30,7 +30,7 @@ animations = [{
 
 [node name="Enemy" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_v5wne")
-animation = &"walk"
+animation = &"stay"
 script = ExtResource("2_2oxiy")
 
 [node name="health" type="ProgressBar" parent="."]
